@@ -1,0 +1,19 @@
+{
+  "name": "bola.id",
+  "version": "1.0.0",
+  "description": "Submission 2 Dicoding Academy - Membangun Progressive Web Apps (Reynaldi Akbar Maulana_167006035@student.unsil.ac.id)",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akbarreynaldi/Bola.ID.git"
+  },
+  "author": "Reynaldi Akbar Maulana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akbarreynaldi/Bola.ID/issues"
+  },
+  "homepage": "https://github.com/akbarreynaldi/Bola.ID#readme"
+}
