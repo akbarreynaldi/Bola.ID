@@ -3,6 +3,7 @@ const version = "0.1.2";
 const CACHE_NAME = `RealMadrid-v1${version}`;
 let urlsToCache = [
     "https://fonts.googleapis.com/icon?family=Material+Icons",
+    "https://fonts.googleapis.com/css?family=Assistant:200,400,700&&display=swap",
     "/",
     "/manifest.json",
     "/nav-menu.html",
