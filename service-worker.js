@@ -1,4 +1,4 @@
-const version = "0.1.3";
+const version = "0.1.4";
 const CACHE_NAME = `RealMadrid-${version}`;
 let urlsToCache = [
     "/",
@@ -54,7 +54,7 @@ self.addEventListener('install', event => {
 
 //menggunakan asset dari cache bila ada jika tidak ada maka menggunakan fetch request
 self.addEventListener("fetch", event => {
-    var base_url = "https://api.football-data.org/v2/";
+    let base_url = "https://api.football-data.org/v2/";
     if (event.request.url.indexOf(base_url) > -1) {
         event.respondWith(
             caches.open(CACHE_NAME).then(cache => {
@@ -99,13 +99,13 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('push', event => {
-    var body;
+    let body;
     if (event.data) {
         body = event.data.text();
     } else {
         body = 'Push message no payload';
     }
-    var options = {
+    let options = {
         body: body,
         icon: '/src/images/notification.png',
         vibrate: [100, 50, 100, 50, 100],
