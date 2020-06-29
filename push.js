@@ -12,13 +12,13 @@ webPush.setVapidDetails(
     vapidKeys.privateKey
 )
 var pushSubscription = {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/cl5NgAKUYLM:APA91bFlOr52KaLLateCqd0V-o-JP3Pnetnjfn2Kc4edhtslY57UFb27RH-hDfSv6NJ-l0kQeGHIC681Bo97xzdzUa8k35ZlUuvzgJA_qLv-ufcSzR-6dm1CFMNoGSt6Fowk0RGKaAna",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/c-XXdgE7bq8:APA91bFkIqhp7rOMTr8dQRO-W4jccNu4am6bB6zbuj_z3q9OMjJhSRdBD5atp6Hm6wMZFEYefDb-Akk6hSxVRgWPmauK0V7yUBVDx11XFszwfNKbp9n6KlCHHHF9QAcmXkt8tMkaDmTH",
     "keys": {
-        "p256dh": "BEb15Rjlu1v0qIsAH2+AsvSYCnmSHsuiACBHZtfs0L82J4VRGeIDVV08u2cRXHRxq/Yv3n3s9jdbqhLUDZSLGLM=",
-        "auth": "WNIfg6yVErPGt2EXZ+PeVQ=="
+        "p256dh": "BMyQy6JswC3b1jgG6m6tx9/m3Q7HhhRCO6JQ0oK6KW4gDq6/ZgagYbBKADlyPKsgZA0gYHkcf3MfJsDKtia10uk=",
+        "auth": "OsMa4Q1GrBtFvUlK5pJ4dg=="
     }
 };
-var payload = 'Selamat! Aplikasi Anda sudah dapat menerima push notifikasi!';
+var payload = 'Hallo! Aplikasi Real Madrid telah mendapatkan update terbaru!';
 
 var options = {
     gcmAPIKey: '610371441073',
