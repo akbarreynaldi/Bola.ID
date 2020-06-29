@@ -1,6 +1,6 @@
 //menyimpan asset ke cache storage
 const version = "0.1.2";
-const CACHE_NAME = `RealMadrid-v1${version}`;
+const CACHE_NAME = `RealMadrid-${version}`;
 let urlsToCache = [
     "https://fonts.googleapis.com/icon?family=Material+Icons",
     "https://fonts.googleapis.com/css?family=Assistant:200,400,700&&display=swap",
@@ -66,13 +66,13 @@ self.addEventListener("fetch", event => {
 });
 
 //menghapus cache lama
-self.addEventListener("activate", event => {
+self.addEventListener('activate', event => {
+    console.log('Aktivasi service worker baru');
     event.waitUntil(
-        caches.keys().then(function(cacheNames) {
+        caches.keys().then(cacheNames => {
             return Promise.all(
-                cacheNames.map(function(cacheName) {
-                    if (cacheName != CACHE_NAME) {
-                        console.log("ServiceWorker: cache " + cacheName + " dihapus");
+                cacheNames.map(cacheName => {
+                    if (cacheName !== CACHE_NAME && cacheName.startsWith("RealMadrid")) {
                         return caches.delete(cacheName);
                     }
                 })
