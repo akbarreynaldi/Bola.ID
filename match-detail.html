@@ -17,36 +17,39 @@
 </head>
 
 <body>
-
     <!-- Navigasi -->
     <nav role="navigation">
         <div class="nav-wrapper container">
             <a href="./index.html" class="brand-logo" id="logo-container">Real Madrid</a>
-            <a href="#" class="sidenav-trigger" data-target="nav-mobile">
-                <i class="material-icons">menu</i>
+            <a href="./index.html#match" class="sidenav-trigger" data-target="nav-mobile">
+                <i class="material-icons">arrow_back</i>
             </a>
-
             <ul class="topnav right hide-on-med-and-down"></ul>
             <ul class="sidenav" id="nav-mobile"></ul>
         </div>
     </nav>
     <header class="left-align">
         <div class="container">
-            <h1 class="bold white-text">
-                Hala Madrid,
-                <br /> y nada mas
-            </h1>
-            <h5 class="light white-text text-lighten-3">
-                el mejor equipo del mundo
-            </h5>
         </div>
     </header>
     <!-- Akhir Navigasi -->
-    <div id="body-content"></div>
+    <div id="body-content">
+        <div class="container">
+            <section class="section-match-stats row center" id="match-details">
+
+            </section>
+        </div>
+    </div>
+    <!-- floating action button -->
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large waves-effect blue" id="save">
+            <i class="large material-icons">bookmark</i>
+        </a>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
     <script src="src/js/materialize.min.js"></script>
     <script src="src/js/loadContent.js"></script>
     <script src="src/js/api.js"></script>
-
     <script>
         // REGISTER SERVICE WORKER
         if ("serviceWorker" in navigator) {
@@ -64,14 +67,8 @@
             console.log("ServiceWorker belum didukung browser ini.");
         }
 
-        // REQUEST API UNTUK PERTAMA KALI
         document.addEventListener("DOMContentLoaded", function() {
-            getSquad();
-            getTeamInfo();
-            getActiveCompetition();
-            getStandings();
-            getScheduledMatch();
-            getFinishedMatch();
+            getMatchById();
         });
     </script>
 </body>

@@ -46,6 +46,18 @@ function loadPage(page) {
         if (this.readyState == 4) {
             var content = document.querySelector("#body-content");
 
+            if (page === "home") {
+                getSquad();
+                getTeamInfo();
+                getActiveCompetition();
+            } else if (page === "standings") {
+                getStandings();
+            } else if (page === "match") {
+                getScheduledMatch();
+                getFinishedMatch();
+            }
+
+
             if (this.status == 200) {
                 content.innerHTML = xhttp.responseText;
             } else if (this.status == 404) {
