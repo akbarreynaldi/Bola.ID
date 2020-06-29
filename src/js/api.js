@@ -36,8 +36,8 @@ function getSquad() {
                             <div class="card-squad" style="background-image: url('../src/images/PLAYER.jpg');">
                                 <div class="squad-stats">
                                     <div class="squad-number left left-align">${squad.shirtNumber}</div>
-                                    <div class="squad-name left-align">${squad.name}</div>
-                                    <div class="squad-position left-align">${squad.position}</div>
+                                    <div class="squad-name left-align truncate">${squad.name}</div>
+                                    <div class="squad-position left-align truncate">${squad.position}</div>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@ function getSquad() {
                         <div class="squad-stats">
                             <div class="squad-number left left-align">${squad.shirtNumber == null ? " " : squad.shirtNumber}</div>
                             <div class="squad-name left-align truncate">${squad.name}</div>
-                            <div class="squad-position left-align">${squad.role == "PLAYER" ? squad.position : squad.role}</div>
+                            <div class="squad-position left-align truncate">${squad.role == "PLAYER" ? squad.position : squad.role}</div>
                         </div>
                     </div>
                 </div>

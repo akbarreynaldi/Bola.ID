@@ -1,9 +1,6 @@
-//menyimpan asset ke cache storage
-const version = "0.1.2";
+const version = "0.1.3";
 const CACHE_NAME = `RealMadrid-${version}`;
 let urlsToCache = [
-    "https://fonts.googleapis.com/icon?family=Material+Icons",
-    "https://fonts.googleapis.com/css?family=Assistant:200,400,700&&display=swap",
     "/",
     "/manifest.json",
     "/nav-menu.html",
@@ -23,7 +20,23 @@ let urlsToCache = [
     "src/images/COACH.jpg",
     "src/images/header.jpg",
     "src/images/Real_Madrid_Logo.svg",
-    "src/images/ic_RealMadrid.png",
+    "/src/images/icons/icon-72x72.png",
+    "/src/images/icons/icon-96x96.png",
+    "/src/images/icons/icon-128x128.png",
+    "/src/images/icons/icon-144x144.png",
+    "/src/images/icons/icon-152x152.png",
+    "/src/images/icons/icon-192x192.png",
+    "/src/images/icons/icon-384x384.png",
+    "/src/images/icons/icon-512x512.png",
+    "/src/images/splash/launch-640x1136.png",
+    "/src/images/splash/launch-750x1294.png",
+    "/src/images/splash/launch-1125x2436.png",
+    "/src/images/splash/launch-1242x2148.png",
+    "/src/images/splash/launch-1536x2048.png",
+    "/src/images/splash/launch-1668x2224.png",
+    "/src/images/splash/launch-2048x2732.png",
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+    "https://fonts.googleapis.com/css?family=Assistant:200,400,700&&display=swap",
 ];
 
 self.addEventListener('install', event => {
@@ -72,7 +85,7 @@ self.addEventListener('activate', event => {
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cacheName => {
-                    if (cacheName !== CACHE_NAME && cacheName.startsWith("RealMadrid")) {
+                    if (cacheName !== CACHE_NAME) {
                         return caches.delete(cacheName);
                     }
                 })
