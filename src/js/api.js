@@ -225,7 +225,7 @@ function getStandings() {
                     let standingsHTML = "";
                     data.standings[0].table.forEach(function(standing) {
                         url = standing.team.crestUrl;
-                        newUrl = url.replace(/^http:\/\//i, 'https://')
+                        newUrl = url.replace(/^http:\/\//i, 'https://');
                         standingsHTML += `
                         <tr>
                             <td>${standing.position}</td>
@@ -261,10 +261,12 @@ function getStandings() {
             // Menyusun komponen card artikel secara dinamis
             let standingsHTML = "";
             data.standings[0].table.forEach(function(standing) {
+                url = standing.team.crestUrl;
+                newUrl = url.replace(/^http:\/\//i, 'https://');
                 standingsHTML += `
                 <tr>
                     <td>${standing.position}</td>
-                    <td><img src="${standing.team.crestUrl}" width="10px" class="circle"> ${standing.team.name}</td>
+                    <td><img src="${newUrl}" width="10px" class="circle"> ${standing.team.name}</td>
                     <td>${standing.playedGames}</td>
                     <td>${standing.won}</td>
                     <td>${standing.draw}</td>
