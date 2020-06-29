@@ -2,7 +2,7 @@
     "name": "Real Madrid - Live Score, Standings, Team Info",
     "short_name": "Real Madrid",
     "description": "Submission 2 Dicoding Academy - Membangun Progressive Web Apps (Reynaldi Akbar Maulana_167006035@student.unsil.ac.id)",
-    "start_url": "/index.html",
+    "start_url": "/",
     "display": "fullscreen",
     "orientation": "portrait",
     "Scope": "/",

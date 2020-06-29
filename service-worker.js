@@ -3,6 +3,7 @@ const CACHE_NAME = `RealMadrid-${version}`;
 let urlsToCache = [
     "/",
     "/manifest.json",
+    "/apple-touch-icon.png",
     "/nav-menu.html",
     "/index.html",
     "/match-detail.html",
@@ -22,6 +23,7 @@ let urlsToCache = [
     "src/images/COACH.jpg",
     "src/images/header.jpg",
     "src/images/Real_Madrid_Logo.svg",
+    "src/images/notification.png",
     "/src/images/icons/icon-72x72.png",
     "/src/images/icons/icon-96x96.png",
     "/src/images/icons/icon-128x128.png",
@@ -93,5 +95,26 @@ self.addEventListener('activate', event => {
                 })
             );
         })
+    );
+});
+
+self.addEventListener('push', event => {
+    var body;
+    if (event.data) {
+        body = event.data.text();
+    } else {
+        body = 'Push message no payload';
+    }
+    var options = {
+        body: body,
+        icon: '/src/images/notification.png',
+        vibrate: [100, 50, 100, 50, 100],
+        data: {
+            dateOfArrival: Date.now(),
+            primaryKey: 1
+        }
+    };
+    event.waitUntil(
+        self.registration.showNotification('Push Notification', options)
     );
 });
