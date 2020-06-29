@@ -86,6 +86,7 @@ header {
 
 .section-squads-content .section-squads-data .card-squad {
     min-height: 380px;
+    width: 100%;
     background: #fff;
     color: #fff;
     padding: 30px;
