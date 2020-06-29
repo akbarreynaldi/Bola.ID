@@ -59,11 +59,17 @@
             <i class="large material-icons">bookmark</i>
         </a>
     </div>
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large waves-effect blue" id="remove">
+            <i class="large material-icons">delete</i>
+        </a>
+    </div>
     <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
     <script src="src/js/materialize.min.js"></script>
     <script src="src/js/api.js"></script>
+    <script src="src/js/idb.js"></script>
+    <script src="src/js/db.js"></script>
     <script>
-        // REGISTER SERVICE WORKER
         // REGISTER SERVICE WORKER
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", function() {
@@ -83,7 +89,45 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            getMatchById();
+            let urlParams = new URLSearchParams(window.location.search);
+            let isFromSaved = urlParams.get("saved");
+            let btnSave = document.getElementById("save");
+            let btnRemove = document.getElementById("remove");
+            if (isFromSaved) {
+                // Hide fab jika dimuat dari indexed db
+                btnSave.style.display = 'none';
+
+                // ambil artikel lalu tampilkan
+                getMatchById();
+            } else {
+                let item = getMatchById();
+                btnRemove.style.display = 'none';
+            }
+            let item = getMatchById();
+            let save = document.getElementById("save");
+            save.onclick = function() {
+                M.toast({
+                    html: 'Match data has been saved!'
+                })
+                console.log("Tombol FAB di klik.");
+                item.then(function(data) {
+                    saveForLater(data);
+                });
+            }
+            let remove = document.getElementById("remove");
+            remove.onclick = function() {
+                console.log("Tombol FAB remove di klik.");
+                item.then(function(data) {
+                    deleteSaved(data);
+                });
+                M.toast({
+                    html: 'Match data has been deleted!',
+                    completeCallback: function() {
+                        location.href = './index.html#saved'
+                    }
+                })
+            }
+
         });
     </script>
 </body>

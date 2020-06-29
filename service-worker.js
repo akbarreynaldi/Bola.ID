@@ -15,6 +15,8 @@ let urlsToCache = [
     "/src/js/materialize.min.js",
     "/src/js/loadContent.js",
     "/src/js/api.js",
+    "/src/js/idb.js",
+    "/src/js/db.js",
     "src/images/PLAYER.jpg",
     "src/images/GK.jpg",
     "src/images/COACH.jpg",

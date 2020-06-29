@@ -299,7 +299,7 @@ function getScheduledMatch() {
                             return n
                         }
                         let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
-                        matchFinishedHTML += `
+                        matchScheduledHTML += `
                         <div class="col s12 m6">
                         <div class="card-match waves-effect hoverable">
                             <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}">
@@ -354,7 +354,7 @@ function getScheduledMatch() {
                     return n
                 }
                 let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
-                matchFinishedHTML += `
+                matchScheduledHTML += `
                 <div class="col s12 m6">
                 <div class="card-match waves-effect hoverable">
                     <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}">
@@ -497,6 +497,7 @@ function getMatchById() {
             caches.match(base_url + "teams/86/matches?status=" + statusParam + "&id=" + idParam).then(function(response) {
                 if (response) {
                     response.json().then(function(data) {
+                        console.log(data);
                         let json = `\"${data.matches[0].utcDate}\"`;
                         let dateStr = JSON.parse(json);
                         let date = new Date(dateStr);
@@ -559,6 +560,7 @@ function getMatchById() {
                 // Objek/array JavaScript dari response.json() masuk lewat data.
 
                 // Menyusun komponen card artikel secara dinamis
+                console.log(data);
                 let json = `\"${data.matches[0].utcDate}\"`;
                 let dateStr = JSON.parse(json);
                 let date = new Date(dateStr);
@@ -606,5 +608,107 @@ function getMatchById() {
                 document.getElementById("match-details").innerHTML = matchFinishedDataHTML;
                 resolve(data);
             })
+    });
+}
+
+function getSavedMatch() {
+    getAll().then(function(match) {
+        console.log(match);
+        // Menyusun komponen card artikel secara dinamis
+        var matchSavedHTML = "";
+        match.forEach(function(matches) {
+            let matchFinish = `<i class="tiny material-icons">check</i>`;
+            let matchSchedule = `<i class="tiny material-icons">schedule</i>`;
+            let json = `\"${matches.utcDate}\"`;
+            let dateStr = JSON.parse(json);
+            let date = new Date(dateStr);
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            function appendLeadingZeroes(n) {
+                if (n <= 9) {
+                    return "0" + n;
+                }
+                return n
+            }
+            let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
+            matchSavedHTML += `
+            <div class="col s12 m6">
+                <div class="card-match waves-effect hoverable">
+                    <a href="./match-detail.html?status=${matches.status}&id=${matches.id}&saved=true">
+                        <div class="card-content black-text">
+                            <h4>Matchday ${matches.matchday} - ${matches.competition.name} ${matches.status == "FINISHED" ? matchFinish : matchSchedule} </h4>
+                            <p>${formatted_date}</p>
+                            <ul class="collection">
+                            <li class="collection-item">
+                                <span class="title">${matches.homeTeam.name}</span>
+                                <p class="secondary-content">${matches.score.fullTime.homeTeam == null ? "-" : matches.score.fullTime.homeTeam}</p>
+                            </li>
+                            <li class="collection-item">
+                                <span class="title">${matches.awayTeam.name}</span>
+                                <p class="secondary-content">${matches.score.fullTime.awayTeam == null ? "-" : matches.score.fullTime.awayTeam}</p>
+                            </li>
+                        </ul>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            `;
+        });
+        // Sisipkan komponen card ke dalam elemen dengan id #body-content
+        document.getElementById("saved-match").innerHTML = matchSavedHTML;
+    });
+}
+
+function getSavedMatchById() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var idParam = urlParams.get("id");
+
+    getById(idParam).then(function(matches) {
+        matchSavedByIdHTML = '';
+        let json = `\"${matches.utcDate}\"`;
+        let dateStr = JSON.parse(json);
+        let date = new Date(dateStr);
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        function appendLeadingZeroes(n) {
+            if (n <= 9) {
+                return "0" + n;
+            }
+            return n
+        }
+        let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
+        var matchSavedByIdHTML = `
+            <div class="col s12 stats-match-detail left-align">
+                <div class="card-content black-text">
+                    <h2>Matchday ${matches.matchday} - ${matches.competition.name}</h2>
+                    <p>${matches.stage}</p>
+                    <p>${formatted_date}</p>
+                    <h3>Full Time</h3>
+                    <ul class="collection">
+                        <li class="collection-item">
+                            <span class="title">${matches.homeTeam.name}</span>
+                            <p class="secondary-content">${matches.score.fullTime.homeTeam == null ? "-" : matches.score.fullTime.homeTeam}</p>
+                        </li>
+                        <li class="collection-item">
+                            <span class="title">${matches.awayTeam.name}</span>
+                            <p class="secondary-content">${matches.score.fullTime.awayTeam == null ? "-" : matches.score.fullTime.awayTeam}</p>
+                        </li>
+                    </ul>
+                    <h3>Half Time</h3>
+                    <ul class="collection">
+                        <li class="collection-item">
+                            <span class="title">${matches.homeTeam.name}</span>
+                            <p class="secondary-content">${matches.score.fullTime.homeTeam == null ? "-" : matches.score.fullTime.homeTeam}</p>
+                        </li>
+                        <li class="collection-item">
+                            <span class="title">${matches.awayTeam.name}</span>
+                            <p class="secondary-content">${matches.score.fullTime.awayTeam == null ? "-" : matches.score.fullTime.awayTeam}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    `;
+        // Sisipkan komponen card ke dalam elemen dengan id #content
+        document.getElementById("match-details").innerHTML = matchSavedByIdHTML;
     });
 }
