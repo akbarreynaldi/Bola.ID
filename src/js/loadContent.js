@@ -57,7 +57,6 @@ function loadPage(page) {
                 getFinishedMatch();
             }
 
-
             if (this.status == 200) {
                 content.innerHTML = xhttp.responseText;
             } else if (this.status == 404) {
