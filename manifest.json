@@ -3,6 +3,7 @@
     "short_name": "Real Madrid",
     "description": "Submission 2 Dicoding Academy - Membangun Progressive Web Apps (Reynaldi Akbar Maulana_167006035@student.unsil.ac.id)",
     "start_url": "/",
+    "gcm_sender_id": "610371441073",
     "display": "fullscreen",
     "orientation": "portrait",
     "Scope": "/",
