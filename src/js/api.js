@@ -285,7 +285,7 @@ function getScheduledMatch() {
         caches.match(base_url + "teams/86/matches?status=SCHEDULED").then(function(response) {
             if (response) {
                 response.json().then(function(data) {
-                    let matchFinishedHTML = "";
+                    let matchScheduledHTML = "";
                     data.matches.forEach(function(match) {
                         let json = `\"${match.utcDate}\"`;
                         let dateStr = JSON.parse(json);
@@ -323,7 +323,7 @@ function getScheduledMatch() {
                         `;
                     });
                     // Sisipkan komponen card ke dalam elemen dengan id #content
-                    document.getElementById("schedule-match").innerHTML = matchFinishedHTML;
+                    document.getElementById("schedule-match").innerHTML = matchScheduledHTML;
                 });
             }
         });
@@ -340,7 +340,7 @@ function getScheduledMatch() {
             // Objek/array JavaScript dari response.json() masuk lewat data.
 
             // Menyusun komponen card artikel secara dinamis
-            let matchFinishedHTML = "";
+            let matchScheduledHTML = "";
             data.matches.forEach(function(match) {
                 let json = `\"${match.utcDate}\"`;
                 let dateStr = JSON.parse(json);
@@ -378,7 +378,7 @@ function getScheduledMatch() {
                 `;
             });
             // Sisipkan komponen card ke dalam elemen dengan id #content
-            document.getElementById("schedule-match").innerHTML = matchFinishedHTML;
+            document.getElementById("schedule-match").innerHTML = matchScheduledHTML;
         })
         .catch(error);
 }
