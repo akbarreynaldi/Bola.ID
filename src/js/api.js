@@ -224,10 +224,12 @@ function getStandings() {
                 response.json().then(function(data) {
                     let standingsHTML = "";
                     data.standings[0].table.forEach(function(standing) {
+                        url = standing.team.crestUrl;
+                        newUrl = url.replace(/^http:\/\//i, 'https://')
                         standingsHTML += `
                         <tr>
                             <td>${standing.position}</td>
-                            <td><img src="${standing.team.crestUrl}" width="10px" class="circle"> ${standing.team.name}</td>
+                            <td><img src="${newUrl}" width="10px" class="circle"> ${standing.team.name}</td>
                             <td>${standing.playedGames}</td>
                             <td>${standing.won}</td>
                             <td>${standing.draw}</td>
@@ -615,7 +617,7 @@ function getSavedMatch() {
     getAll().then(function(match) {
         console.log(match);
         // Menyusun komponen card artikel secara dinamis
-        var matchSavedHTML = "";
+        let matchSavedHTML = "";
         match.forEach(function(matches) {
             let matchFinish = `<i class="tiny material-icons">check</i>`;
             let matchSchedule = `<i class="tiny material-icons">schedule</i>`;
@@ -660,8 +662,8 @@ function getSavedMatch() {
 }
 
 function getSavedMatchById() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var idParam = urlParams.get("id");
+    let urlParams = new URLSearchParams(window.location.search);
+    let idParam = urlParams.get("id");
 
     getById(idParam).then(function(matches) {
         matchSavedByIdHTML = '';
@@ -677,7 +679,7 @@ function getSavedMatchById() {
             return n
         }
         let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
-        var matchSavedByIdHTML = `
+        let matchSavedByIdHTML = `
             <div class="col s12 stats-match-detail left-align">
                 <div class="card-content black-text">
                     <h2>Matchday ${matches.matchday} - ${matches.competition.name}</h2>
