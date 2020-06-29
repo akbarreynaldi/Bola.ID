@@ -33,7 +33,7 @@ function getSquad() {
                     data.squad.forEach(function(squad) {
                         squadsHTML += `
                         <div class="col s6 m4 l3">
-                            <div class="card-squad" style="background-image: url('../src/images/PLAYER.jpg');">
+                            <div class="card-squad waves-effect hoverable" style="background-image: url('../src/images/PLAYER.jpg');">
                                 <div class="squad-stats">
                                     <div class="squad-number left left-align">${squad.shirtNumber}</div>
                                     <div class="squad-name left-align truncate">${squad.name}</div>
@@ -65,7 +65,7 @@ function getSquad() {
             data.squad.forEach(function(squad) {
                 squadsHTML += `
                 <div class="col s6 m4 l3">
-                    <div class="card-squad" style="background-image: url(${squad.role == "PLAYER" & squad.position == "Goalkeeper" ? '../src/images/GK.jpg' : squad.role == "PLAYER" ? '../src/images/PLAYER.jpg' : '../src/images/COACH.jpg' });">
+                    <div class="card-squad waves-effect hoverable" style="background-image: url(${squad.role == "PLAYER" & squad.position == "Goalkeeper" ? '../src/images/GK.jpg' : squad.role == "PLAYER" ? '../src/images/PLAYER.jpg' : '../src/images/COACH.jpg' });">
                         <div class="squad-stats">
                             <div class="squad-number left left-align">${squad.shirtNumber == null ? " " : squad.shirtNumber}</div>
                             <div class="squad-name left-align truncate">${squad.name}</div>
