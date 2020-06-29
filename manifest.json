@@ -4,8 +4,8 @@
     "description": "Submission 2 Dicoding Academy - Membangun Progressive Web Apps (Reynaldi Akbar Maulana_167006035@student.unsil.ac.id)",
     "start_url": "/index.html",
     "display": "standalone",
-    "background_color": "#071C40",
-    "theme_color": "#071C40",
+    "background_color": "#071C4D",
+    "theme_color": "#071C4D",
     "icons": [{
         "src": "./src/images/ic_RealMadrid.png",
         "sizes": "512x512",
