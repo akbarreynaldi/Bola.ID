@@ -52,7 +52,7 @@ function getSquad() {
 
     fetch(base_url + "teams/86", {
             headers: {
-                'X-Auth-Token': "3b843af1388e4445a78ccaa24fefe36f"
+                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
             }
         })
         .then(status)
@@ -126,7 +126,7 @@ function getTeamInfo() {
 
     fetch(base_url + "teams/86", {
             headers: {
-                'X-Auth-Token': "3b843af1388e4445a78ccaa24fefe36f"
+                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
             }
         })
         .then(status)
@@ -194,7 +194,7 @@ function getActiveCompetition() {
 
     fetch(base_url + "teams/86", {
             headers: {
-                'X-Auth-Token': "3b843af1388e4445a78ccaa24fefe36f"
+                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
             }
         })
         .then(status)
@@ -248,7 +248,7 @@ function getStandings() {
 
     fetch(base_url + "competitions/2014/standings", {
             headers: {
-                'X-Auth-Token': "3b843af1388e4445a78ccaa24fefe36f"
+                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
             }
         })
         .then(status)
@@ -309,11 +309,11 @@ function getScheduledMatch() {
                                     <ul class="collection">
                                         <li class="collection-item">
                                             <span class="title">${match.homeTeam.name}</span>
-                                            <p class="secondary-content">-</p>
+                                            <p class="secondary-content">${match.score.fullTime.homeTeam == null ? "-" : match.score.fullTime.homeTeam}</p>
                                         </li>
                                         <li class="collection-item">
                                             <span class="title">${match.awayTeam.name}</span>
-                                            <p class="secondary-content">-</p>
+                                            <p class="secondary-content">${match.score.fullTime.awayTeam == null ? "-" : match.score.fullTime.awayTeam}</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -331,7 +331,7 @@ function getScheduledMatch() {
 
     fetch(base_url + "teams/86/matches?status=SCHEDULED", {
             headers: {
-                'X-Auth-Token': "3b843af1388e4445a78ccaa24fefe36f"
+                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
             }
         })
         .then(status)
@@ -364,11 +364,11 @@ function getScheduledMatch() {
                             <ul class="collection">
                                 <li class="collection-item">
                                     <span class="title">${match.homeTeam.name}</span>
-                                    <p class="secondary-content">-</p>
+                                    <p class="secondary-content">${match.score.fullTime.homeTeam == null ? "-" : match.score.fullTime.homeTeam}</p>
                                 </li>
                                 <li class="collection-item">
                                     <span class="title">${match.awayTeam.name}</span>
-                                    <p class="secondary-content">-</p>
+                                    <p class="secondary-content">${match.score.fullTime.awayTeam == null ? "-" : match.score.fullTime.awayTeam}</p>
                                 </li>
                             </ul>
                         </div>
@@ -434,7 +434,7 @@ function getFinishedMatch() {
 
     fetch(base_url + "teams/86/matches?status=FINISHED", {
             headers: {
-                'X-Auth-Token': "3b843af1388e4445a78ccaa24fefe36f"
+                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
             }
         })
         .then(status)
@@ -497,7 +497,6 @@ function getMatchById() {
             caches.match(base_url + "teams/86/matches?status=" + statusParam + "&id=" + idParam).then(function(response) {
                 if (response) {
                     response.json().then(function(data) {
-                        console.log(data);
                         let json = `\"${data.matches[0].utcDate}\"`;
                         let dateStr = JSON.parse(json);
                         let date = new Date(dateStr);
@@ -520,22 +519,22 @@ function getMatchById() {
                             <ul class="collection">
                                 <li class="collection-item">
                                     <span class="title">${data.matches[0].homeTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[0].score.fullTime.homeTeam}</p>
+                                    <p class="secondary-content">${data.matches[0].score.fullTime.homeTeam == null ? "-" : data.matches[0].score.fullTime.homeTeam}</p>
                                 </li>
                                 <li class="collection-item">
                                     <span class="title">${data.matches[0].awayTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[0].score.fullTime.awayTeam}</p>
+                                    <p class="secondary-content">${data.matches[0].score.fullTime.awayTeam == null ? "-" : data.matches[0].score.fullTime.awayTeam}</p>
                                 </li>
                             </ul>
                             <h3>Half Time</h3>
                             <ul class="collection">
                                 <li class="collection-item">
                                     <span class="title">${data.matches[0].homeTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[0].score.halfTime.homeTeam}</p>
+                                    <p class="secondary-content">${data.matches[0].score.fullTime.homeTeam == null ? "-" : data.matches[0].score.fullTime.homeTeam}</p>
                                 </li>
                                 <li class="collection-item">
                                     <span class="title">${data.matches[0].awayTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[0].score.halfTime.awayTeam}</p>
+                                    <p class="secondary-content">${data.matches[0].score.fullTime.awayTeam == null ? "-" : data.matches[0].score.fullTime.awayTeam}</p>
                                 </li>
                             </ul>
                         </div>
@@ -551,7 +550,7 @@ function getMatchById() {
 
         fetch(base_url + "teams/86/matches?status=" + statusParam + "&id=" + idParam, {
                 headers: {
-                    'X-Auth-Token': "3b843af1388e4445a78ccaa24fefe36f"
+                    'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
                 }
             })
             .then(status)
@@ -560,7 +559,6 @@ function getMatchById() {
                 // Objek/array JavaScript dari response.json() masuk lewat data.
 
                 // Menyusun komponen card artikel secara dinamis
-                console.log(data);
                 let json = `\"${data.matches[0].utcDate}\"`;
                 let dateStr = JSON.parse(json);
                 let date = new Date(dateStr);
@@ -583,22 +581,22 @@ function getMatchById() {
                     <ul class="collection">
                         <li class="collection-item">
                             <span class="title">${data.matches[0].homeTeam.name}</span>
-                            <p class="secondary-content">${data.matches[0].score.fullTime.homeTeam}</p>
+                            <p class="secondary-content">${data.matches[0].score.fullTime.homeTeam == null ? "-" : data.matches[0].score.fullTime.homeTeam}</p>
                         </li>
                         <li class="collection-item">
                             <span class="title">${data.matches[0].awayTeam.name}</span>
-                            <p class="secondary-content">${data.matches[0].score.fullTime.awayTeam}</p>
+                            <p class="secondary-content">${data.matches[0].score.fullTime.awayTeam == null ? "-" : data.matches[0].score.fullTime.awayTeam}</p>
                         </li>
                     </ul>
                     <h3>Half Time</h3>
                     <ul class="collection">
                         <li class="collection-item">
                             <span class="title">${data.matches[0].homeTeam.name}</span>
-                            <p class="secondary-content">${data.matches[0].score.halfTime.homeTeam}</p>
+                            <p class="secondary-content">${data.matches[0].score.fullTime.homeTeam == null ? "-" : data.matches[0].score.fullTime.homeTeam}</p>
                         </li>
                         <li class="collection-item">
                             <span class="title">${data.matches[0].awayTeam.name}</span>
-                            <p class="secondary-content">${data.matches[0].score.halfTime.awayTeam}</p>
+                            <p class="secondary-content">${data.matches[0].score.fullTime.awayTeam == null ? "-" : data.matches[0].score.fullTime.awayTeam}</p>
                         </li>
                     </ul>
                 </div>

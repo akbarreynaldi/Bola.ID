@@ -48,14 +48,16 @@
     </div>
     <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
     <script src="src/js/materialize.min.js"></script>
-    <script src="src/js/loadContent.js"></script>
     <script src="src/js/api.js"></script>
     <script>
+        // REGISTER SERVICE WORKER
         // REGISTER SERVICE WORKER
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", function() {
                 navigator.serviceWorker
-                    .register("/service-worker.js")
+                    .register("/service-worker.js", {
+                        scope: '/'
+                    })
                     .then(function() {
                         console.log("Pendaftaran ServiceWorker berhasil");
                     })

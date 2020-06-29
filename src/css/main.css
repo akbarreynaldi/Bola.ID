@@ -12,15 +12,6 @@ header {
     background-position: center;
 }
 
-header .btn-get-started {
-    background-color: #FF9E53;
-    color: #fff;
-}
-
-header .btn-get-started:hover {
-    color: #fff;
-}
-
 .section-club-stats {
     margin-top: -50px;
 }
@@ -136,15 +127,6 @@ header .btn-get-started:hover {
     color: #fff;
 }
 
-.section-squads-content .section-squads-data .card-squad .squad-button .btn-squad-details {
-    background-color: #FF9E53;
-    color: #fff;
-}
-
-.section-squads-content .section-squads-data .card-squad .squad-button .btn-squad-details:hover {
-    color: #fff;
-}
-
 .section-team-info {
     background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#fff));
     background: linear-gradient(#f3f3f3 0%, #fff 100%);
@@ -162,10 +144,6 @@ header .btn-get-started:hover {
     background: linear-gradient(#fff 0%, #f7f9ff 100%);
     padding-top: 50px;
     min-height: 506px;
-}
-
-.section-footer a {
-    color: #071c4d;
 }
 
 .section-match {
