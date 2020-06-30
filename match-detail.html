@@ -18,7 +18,7 @@
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Expo" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="apple-touch-icon" sizes="512x512" href="/apple-touch-icon.png">
     <link rel="apple-touch-startup-image" href="/src/images/splash/launch-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
     <link rel="apple-touch-startup-image" href="/src/images/splash/launch-750x1294.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
@@ -41,6 +41,7 @@
             <ul class="sidenav" id="nav-mobile"></ul>
         </div>
     </nav>
+    <!-- Header Jumbotron Background-->
     <header class="left-align">
         <div class="container">
         </div>
@@ -94,22 +95,24 @@
             let btnSave = document.getElementById("save");
             let btnRemove = document.getElementById("remove");
             if (isFromSaved) {
-                // Hide fab jika dimuat dari indexed db
+                // Hide fab save jika dimuat dari halaman saved
                 btnSave.style.display = 'none';
 
-                // ambil artikel lalu tampilkan
+                // ambil match data by id lalu tampilkan
                 getMatchById();
             } else {
                 let item = getMatchById();
+                // Hide fab remove jika dimuat dari halaman match
                 btnRemove.style.display = 'none';
             }
             let item = getMatchById();
             let save = document.getElementById("save");
             save.onclick = function() {
+                // Toast notification jika FAB save di klik
                 M.toast({
                     html: 'Match data has been saved!'
                 })
-                console.log("Tombol FAB di klik.");
+                console.log("Tombol FAB save di klik.");
                 item.then(function(data) {
                     saveForLater(data);
                 });
@@ -120,6 +123,7 @@
                 item.then(function(data) {
                     deleteSaved(data);
                 });
+                // Toast notification jika FAB remove di klik dan akan reload kembali ke halaman saved jika data sudah berhasil dihapus
                 M.toast({
                     html: 'Match data has been deleted!',
                     completeCallback: function() {
