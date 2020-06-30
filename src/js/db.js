@@ -6,14 +6,15 @@ let dbPromised = idb.open("real-madrid", 1, function(upgradeDb) {
 });
 
 //Fungsi untuk menyimpan match data ke indexedDB dengan nama database match
-function saveForLater(data) {
+function saveForLater(data, indexOf) {
     dbPromised
         .then(function(db) {
             let tx = db.transaction("match", "readwrite");
             let store = tx.objectStore("match");
             console.log(data);
-            store.add(data.matches[0]);
-            console.log(data.matches[0].id);
+            console.log(indexOf);
+            store.add(data.matches[indexOf]);
+            console.log(data.matches[indexOf].id);
             return tx.complete;
         })
         .then(function() {
@@ -52,12 +53,12 @@ function getById(id) {
 }
 
 //Fungsi untuk menghapus match data berdasarkan id dari indexedDB dengan nama database match
-function deleteSaved(data) {
+function deleteSaved(data, indexOf) {
     dbPromised
         .then(function(db) {
             let tx = db.transaction("match", "readwrite");
             let store = tx.objectStore("match");
-            store.delete(data.matches[0].id);
+            store.delete(data.matches[indexOf].id);
             return tx.complete;
         })
         .then(function() {

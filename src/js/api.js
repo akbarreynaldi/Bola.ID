@@ -33,11 +33,11 @@ function getSquad() {
                     data.squad.forEach(function(squad) {
                         squadsHTML += `
                         <div class="col s6 m4 l3">
-                            <div class="card-squad waves-effect hoverable" style="background-image: url('../src/images/PLAYER.jpg');">
+                            <div class="card-squad waves-effect hoverable" style="background-image: url(${squad.role == "PLAYER" & squad.position == "Goalkeeper" ? '../src/images/GK.jpg' : squad.role == "PLAYER" ? '../src/images/PLAYER.jpg' : '../src/images/COACH.jpg' });">
                                 <div class="squad-stats">
-                                    <div class="squad-number left left-align">${squad.shirtNumber}</div>
+                                    <div class="squad-number left left-align">${squad.shirtNumber == null ? " " : squad.shirtNumber}</div>
                                     <div class="squad-name left-align truncate">${squad.name}</div>
-                                    <div class="squad-position left-align truncate">${squad.position}</div>
+                                    <div class="squad-position left-align truncate">${squad.role == "PLAYER" ? squad.position : squad.role}</div>
                                 </div>
                             </div>
                         </div>
@@ -306,7 +306,7 @@ function getScheduledMatch() {
                         matchScheduledHTML += `
                         <div class="col s12 m6">
                         <div class="card-match waves-effect hoverable">
-                            <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}">
+                            <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}&matchday=${match.matchday}">
                                 <div class="card-content black-text">
                                     <h4>Matchday ${match.matchday} - ${match.competition.name} <i class="tiny material-icons">schedule</i> </h4>
                                     <p>${formatted_date}</p>
@@ -361,7 +361,7 @@ function getScheduledMatch() {
                 matchScheduledHTML += `
                 <div class="col s12 m6">
                 <div class="card-match waves-effect hoverable">
-                    <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}">
+                    <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}&matchday=${match.matchday}">
                         <div class="card-content black-text">
                             <h4>Matchday ${match.matchday} - ${match.competition.name} <i class="tiny material-icons">schedule</i> </h4>
                             <p>${formatted_date}</p>
@@ -409,7 +409,7 @@ function getFinishedMatch() {
                         matchFinishedHTML += `
                         <div class="col s12 m6">
                         <div class="card-match waves-effect hoverable">
-                            <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}">
+                            <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}&matchday=${match.matchday}">
                                 <div class="card-content black-text">
                                     <h4>Matchday ${match.matchday} - ${match.competition.name} <i class="tiny material-icons">check</i> </h4>
                                     <p>${formatted_date}</p>
@@ -464,7 +464,7 @@ function getFinishedMatch() {
                 matchFinishedHTML += `
                 <div class="col s12 m6">
                 <div class="card-match waves-effect hoverable">
-                    <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}">
+                    <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}&matchday=${match.matchday}">
                         <div class="card-content black-text">
                             <h4>Matchday ${match.matchday} - ${match.competition.name} <i class="tiny material-icons">check</i> </h4>
                             <p>${formatted_date}</p>
@@ -496,13 +496,21 @@ function getMatchById() {
         let urlParams = new URLSearchParams(window.location.search);
         let idParam = urlParams.get("id");
         let statusParam = urlParams.get("status");
+        let matchdayParam = urlParams.get("matchday");
 
         if ("caches" in window) {
             caches.match(base_url + "teams/86/matches?status=" + statusParam + "&id=" + idParam).then(function(response) {
                 if (response) {
                     response.json().then(function(data) {
+                        let indexMatch = matchdayParam;
+                        if (statusParam === "FINISHED") {
+                            indexMatch = indexMatch;
+                        } else if (statusParam === "SCHEDULED") {
+                            indexMatch = (matchdayParam - matchdayParam + 1);
+                        };
                         console.log(data);
-                        let json = `\"${data.matches[0].utcDate}\"`;
+                        console.log(indexMatch);
+                        let json = `\"${data.matches[indexMatch-1].utcDate}\"`;
                         let dateStr = JSON.parse(json);
                         let date = new Date(dateStr);
                         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -517,29 +525,29 @@ function getMatchById() {
                         let matchFinishedDataHTML = `
                     <div class="col s12 stats-match-detail left-align">
                         <div class="card-content black-text">
-                            <h2>Matchday ${data.matches[0].matchday} - ${data.matches[0].competition.name}</h2>
-                            <p>${data.matches[0].stage}</p>
+                            <h2>Matchday ${data.matches[indexMatch-1].matchday} - ${data.matches[indexMatch-1].competition.name}</h2>
+                            <p>${data.matches[indexMatch-1].stage}</p>
                             <p>${formatted_date}</p>
                             <h3>Full Time</h3>
                             <ul class="collection">
                                 <li class="collection-item">
-                                    <span class="title">${data.matches[0].homeTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[0].score.fullTime.homeTeam == null ? "-" : data.matches[0].score.fullTime.homeTeam}</p>
+                                    <span class="title">${data.matches[indexMatch-1].homeTeam.name}</span>
+                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
                                 </li>
                                 <li class="collection-item">
-                                    <span class="title">${data.matches[0].awayTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[0].score.fullTime.awayTeam == null ? "-" : data.matches[0].score.fullTime.awayTeam}</p>
+                                    <span class="title">${data.matches[indexMatch-1].awayTeam.name}</span>
+                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
                                 </li>
                             </ul>
                             <h3>Half Time</h3>
                             <ul class="collection">
                                 <li class="collection-item">
-                                    <span class="title">${data.matches[0].homeTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[0].score.fullTime.homeTeam == null ? "-" : data.matches[0].score.fullTime.homeTeam}</p>
+                                    <span class="title">${data.matches[indexMatch-1].homeTeam.name}</span>
+                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
                                 </li>
                                 <li class="collection-item">
-                                    <span class="title">${data.matches[0].awayTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[0].score.fullTime.awayTeam == null ? "-" : data.matches[0].score.fullTime.awayTeam}</p>
+                                    <span class="title">${data.matches[indexMatch-1].awayTeam.name}</span>
+                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
                                 </li>
                             </ul>
                         </div>
@@ -564,8 +572,15 @@ function getMatchById() {
                 // Objek/array JavaScript dari response.json() masuk lewat data.
 
                 // Menyusun komponen secara dinamis
+                let indexMatch = matchdayParam;
+                if (statusParam === "FINISHED") {
+                    indexMatch = indexMatch;
+                } else if (statusParam === "SCHEDULED") {
+                    indexMatch = (matchdayParam - matchdayParam + 1);
+                };
                 console.log(data);
-                let json = `\"${data.matches[0].utcDate}\"`;
+                console.log(indexMatch);
+                let json = `\"${data.matches[indexMatch-1].utcDate}\"`;
                 let dateStr = JSON.parse(json);
                 let date = new Date(dateStr);
                 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -580,29 +595,29 @@ function getMatchById() {
                 let matchFinishedDataHTML = `
             <div class="col s12 stats-match-detail left-align">
                 <div class="card-content black-text">
-                    <h2>Matchday ${data.matches[0].matchday} - ${data.matches[0].competition.name}</h2>
-                    <p>${data.matches[0].stage}</p>
+                    <h2>Matchday ${data.matches[indexMatch-1].matchday} - ${data.matches[indexMatch-1].competition.name}</h2>
+                    <p>${data.matches[indexMatch-1].stage}</p>
                     <p>${formatted_date}</p>
                     <h3>Full Time</h3>
                     <ul class="collection">
                         <li class="collection-item">
-                            <span class="title">${data.matches[0].homeTeam.name}</span>
-                            <p class="secondary-content">${data.matches[0].score.fullTime.homeTeam == null ? "-" : data.matches[0].score.fullTime.homeTeam}</p>
+                            <span class="title">${data.matches[indexMatch-1].homeTeam.name}</span>
+                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
                         </li>
                         <li class="collection-item">
-                            <span class="title">${data.matches[0].awayTeam.name}</span>
-                            <p class="secondary-content">${data.matches[0].score.fullTime.awayTeam == null ? "-" : data.matches[0].score.fullTime.awayTeam}</p>
+                            <span class="title">${data.matches[indexMatch-1].awayTeam.name}</span>
+                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
                         </li>
                     </ul>
                     <h3>Half Time</h3>
                     <ul class="collection">
                         <li class="collection-item">
-                            <span class="title">${data.matches[0].homeTeam.name}</span>
-                            <p class="secondary-content">${data.matches[0].score.fullTime.homeTeam == null ? "-" : data.matches[0].score.fullTime.homeTeam}</p>
+                            <span class="title">${data.matches[indexMatch-1].homeTeam.name}</span>
+                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
                         </li>
                         <li class="collection-item">
-                            <span class="title">${data.matches[0].awayTeam.name}</span>
-                            <p class="secondary-content">${data.matches[0].score.fullTime.awayTeam == null ? "-" : data.matches[0].score.fullTime.awayTeam}</p>
+                            <span class="title">${data.matches[indexMatch-1].awayTeam.name}</span>
+                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
                         </li>
                     </ul>
                 </div>
@@ -638,7 +653,7 @@ function getSavedMatch() {
             matchSavedHTML += `
             <div class="col s12 m6">
                 <div class="card-match waves-effect hoverable">
-                    <a href="./match-detail.html?status=${matches.status}&id=${matches.id}&saved=true">
+                    <a href="./match-detail.html?status=${matches.status}&id=${matches.id}&matchday=${matches.matchday}&saved=true">
                         <div class="card-content black-text">
                             <h4>Matchday ${matches.matchday} - ${matches.competition.name} ${matches.status == "FINISHED" ? matchFinish : matchSchedule} </h4>
                             <p>${formatted_date}</p>
@@ -666,9 +681,17 @@ function getSavedMatch() {
 function getSavedMatchById() {
     let urlParams = new URLSearchParams(window.location.search);
     let idParam = urlParams.get("id");
+    let statusParam = urlParams.get("status");
+    let matchdayParam = urlParams.get("matchday");
 
     getById(idParam).then(function(matches) {
-        matchSavedByIdHTML = '';
+        let matchSavedByIdHTML = '';
+        let indexMatch = matchdayParam;
+        if (statusParam === "FINISHED") {
+            indexMatch = indexMatch;
+        } else if (statusParam === "SCHEDULED") {
+            indexMatch = (matchdayParam - matchdayParam + 1);
+        };
         let json = `\"${matches.utcDate}\"`;
         let dateStr = JSON.parse(json);
         let date = new Date(dateStr);
@@ -681,32 +704,32 @@ function getSavedMatchById() {
             return n
         }
         let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
-        let matchSavedByIdHTML = `
+        matchSavedByIdHTML = `
             <div class="col s12 stats-match-detail left-align">
                 <div class="card-content black-text">
-                    <h2>Matchday ${matches.matchday} - ${matches.competition.name}</h2>
-                    <p>${matches.stage}</p>
+                    <h2>Matchday ${matches[indexMatch].matchday} - ${matches[indexMatch].competition.name}</h2>
+                    <p>${matches[indexMatch].stage}</p>
                     <p>${formatted_date}</p>
                     <h3>Full Time</h3>
                     <ul class="collection">
                         <li class="collection-item">
-                            <span class="title">${matches.homeTeam.name}</span>
-                            <p class="secondary-content">${matches.score.fullTime.homeTeam == null ? "-" : matches.score.fullTime.homeTeam}</p>
+                            <span class="title">${matches[indexMatch].homeTeam.name}</span>
+                            <p class="secondary-content">${matches[indexMatch].score.fullTime.homeTeam == null ? "-" : matches[indexMatch].score.fullTime.homeTeam}</p>
                         </li>
                         <li class="collection-item">
-                            <span class="title">${matches.awayTeam.name}</span>
-                            <p class="secondary-content">${matches.score.fullTime.awayTeam == null ? "-" : matches.score.fullTime.awayTeam}</p>
+                            <span class="title">${matches[indexMatch].awayTeam.name}</span>
+                            <p class="secondary-content">${matches[indexMatch].score.fullTime.awayTeam == null ? "-" : matches[indexMatch].score.fullTime.awayTeam}</p>
                         </li>
                     </ul>
                     <h3>Half Time</h3>
                     <ul class="collection">
                         <li class="collection-item">
-                            <span class="title">${matches.homeTeam.name}</span>
-                            <p class="secondary-content">${matches.score.fullTime.homeTeam == null ? "-" : matches.score.fullTime.homeTeam}</p>
+                            <span class="title">${matches[indexMatch].homeTeam.name}</span>
+                            <p class="secondary-content">${matches[indexMatch].score.fullTime.homeTeam == null ? "-" : matches[indexMatch].score.fullTime.homeTeam}</p>
                         </li>
                         <li class="collection-item">
-                            <span class="title">${matches.awayTeam.name}</span>
-                            <p class="secondary-content">${matches.score.fullTime.awayTeam == null ? "-" : matches.score.fullTime.awayTeam}</p>
+                            <span class="title">${matches[indexMatch].awayTeam.name}</span>
+                            <p class="secondary-content">${matches[indexMatch].score.fullTime.awayTeam == null ? "-" : matches[indexMatch].score.fullTime.awayTeam}</p>
                         </li>
                     </ul>
                 </div>

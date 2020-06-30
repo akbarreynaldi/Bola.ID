@@ -92,6 +92,16 @@
         document.addEventListener("DOMContentLoaded", function() {
             let urlParams = new URLSearchParams(window.location.search);
             let isFromSaved = urlParams.get("saved");
+            let statusParam = urlParams.get("status");
+            let matchdayParam = urlParams.get("matchday");
+            console.log("matchday " + matchdayParam);
+            let indexOf = matchdayParam;
+            if (statusParam === "FINISHED") {
+                indexOf = indexOf - 1;
+            } else if (statusParam === "SCHEDULED") {
+                indexOf = (matchdayParam - matchdayParam + 1);
+            };
+            console.log("index array = " + indexOf);
             let btnSave = document.getElementById("save");
             let btnRemove = document.getElementById("remove");
             if (isFromSaved) {
@@ -99,7 +109,7 @@
                 btnSave.style.display = 'none';
 
                 // ambil match data by id lalu tampilkan
-                getMatchById();
+                getSavedMatchById();
             } else {
                 let item = getMatchById();
                 // Hide fab remove jika dimuat dari halaman match
@@ -113,15 +123,16 @@
                     html: 'Match data has been saved!'
                 })
                 console.log("Tombol FAB save di klik.");
+                console.log("index array = " + indexOf);
                 item.then(function(data) {
-                    saveForLater(data);
+                    saveForLater(data, indexOf);
                 });
             }
             let remove = document.getElementById("remove");
             remove.onclick = function() {
                 console.log("Tombol FAB remove di klik.");
                 item.then(function(data) {
-                    deleteSaved(data);
+                    deleteSaved(data, indexOf);
                 });
                 // Toast notification jika FAB remove di klik dan akan reload kembali ke halaman saved jika data sudah berhasil dihapus
                 M.toast({
