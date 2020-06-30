@@ -1,8 +1,8 @@
 let webPush = require('web-push');
 
 const vapidKeys = {
-    "publicKey": "BIEyUCQUQ3EvtpEGzZ6_3arVALn-jVAxL9O3niSTI2oEwWPiZCkfBu3N2Qvmi9OPZWBdit_xtMikEAuv3qD-98I",
-    "privateKey": "bf6qpDApcz5YGaAnpaiZFHQY8eY8glYobeZUZlyAVbc"
+    "publicKey": "BAs4rT7xGjFfwUV716dgdb5EAIo4L4414gsC7nAIi2HJpwSirSEMQDf3JdwiBWRCI7kVrCdS871_AAzFDTXJ7zg",
+    "privateKey": "50hMwu7CrwsZ5EjO7u3kZmBQVm-WXE-l2XGP4zXH8LM"
 };
 
 
@@ -12,10 +12,10 @@ webPush.setVapidDetails(
     vapidKeys.privateKey
 )
 let pushSubscription = {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/c-XXdgE7bq8:APA91bFkIqhp7rOMTr8dQRO-W4jccNu4am6bB6zbuj_z3q9OMjJhSRdBD5atp6Hm6wMZFEYefDb-Akk6hSxVRgWPmauK0V7yUBVDx11XFszwfNKbp9n6KlCHHHF9QAcmXkt8tMkaDmTH",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/cyyMRCw39eU:APA91bEltF5ZtnsP1ikCAH7wUVklKw6nCpoS0mqZeCWLaX2Lt9CjiYcUNLedfAc5oViYyY6QN4CG9FLn-3a5PeDVYIYAoAQxY_W1i-XnlZ_D4TMCD70A9CB1RV2Tc-fSr6DEOOQrg5N6",
     "keys": {
-        "p256dh": "BMyQy6JswC3b1jgG6m6tx9/m3Q7HhhRCO6JQ0oK6KW4gDq6/ZgagYbBKADlyPKsgZA0gYHkcf3MfJsDKtia10uk=",
-        "auth": "OsMa4Q1GrBtFvUlK5pJ4dg=="
+        "p256dh": "BPT23N09qXU3snuX2ICTmVaTnW5jnxroTPdZCcMhr2TJjr8xaISgJ2Ys1oHydpy8A+PJ/xCIW0Tgqi+IzWt9LlQ=",
+        "auth": "/Wu4K9alrlzYlR1CIBw3ww=="
     }
 };
 let payload = 'Hallo! Aplikasi Real Madrid telah mendapatkan update terbaru!';
