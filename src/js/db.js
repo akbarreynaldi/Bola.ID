@@ -5,6 +5,7 @@ let dbPromised = idb.open("real-madrid", 1, function(upgradeDb) {
     matchObjectStore.createIndex("match_matchday", "match_matchday", { unique: false });
 });
 
+//Fungsi untuk menyimpan match data ke indexedDB dengan nama database match
 function saveForLater(data) {
     dbPromised
         .then(function(db) {
@@ -20,6 +21,7 @@ function saveForLater(data) {
         });
 }
 
+//Fungsi untuk mengambil seluruh match data dari indexedDB dengan nama database match
 function getAll() {
     return new Promise(function(resolve, reject) {
         dbPromised
@@ -34,6 +36,7 @@ function getAll() {
     });
 }
 
+//Fungsi untuk mengambil match data berdasarkan id dari indexedDB dengan nama database match
 function getById(id) {
     return new Promise(function(resolve, reject) {
         dbPromised
@@ -48,6 +51,7 @@ function getById(id) {
     });
 }
 
+//Fungsi untuk menghapus match data berdasarkan id dari indexedDB dengan nama database match
 function deleteSaved(data) {
     dbPromised
         .then(function(db) {
