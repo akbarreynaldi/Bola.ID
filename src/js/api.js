@@ -43,7 +43,7 @@ function getSquad() {
                         </div>
                         `;
                     });
-                    // Sisipkan komponen card ke dalam elemen dengan id #content
+                    // Sisipkan komponen ke dalam elemen dengan id #squad-data
                     document.getElementById("squad-data").innerHTML = squadsHTML;
                 });
             }
@@ -60,7 +60,7 @@ function getSquad() {
         .then(function(data) {
             // Objek/array JavaScript dari response.json() masuk lewat data.
 
-            // Menyusun komponen card artikel secara dinamis
+            // Menyusun komponen secara dinamis
             let squadsHTML = "";
             data.squad.forEach(function(squad) {
                 squadsHTML += `
@@ -75,7 +75,7 @@ function getSquad() {
                 </div>
                 `;
             });
-            // Sisipkan komponen card ke dalam elemen dengan id #content
+            // Sisipkan komponen ke dalam elemen dengan id #squad-data
             document.getElementById("squad-data").innerHTML = squadsHTML;
         })
         .catch(error);
@@ -117,7 +117,7 @@ function getTeamInfo() {
                         </div>
                     </div>
                     `;
-                    // Sisipkan komponen card ke dalam elemen dengan id #content
+                    // Sisipkan komponen ke dalam elemen dengan id #team-data
                     document.getElementById("team-data").innerHTML = teamInfoHTML;
                 });
             }
@@ -134,7 +134,7 @@ function getTeamInfo() {
         .then(function(data) {
             // Objek/array JavaScript dari response.json() masuk lewat data.
 
-            // Menyusun komponen card artikel secara dinamis
+            // Menyusun komponen secara dinamis
             let teamInfoHTML = "";
             teamInfoHTML += `
             <div class="card">
@@ -166,7 +166,7 @@ function getTeamInfo() {
                 </div>
             </div>
             `;
-            // Sisipkan komponen card ke dalam elemen dengan id #content
+            // Sisipkan komponen ke dalam elemen dengan id #team-data
             document.getElementById("team-data").innerHTML = teamInfoHTML;
         })
         .catch(error);
@@ -185,7 +185,7 @@ function getActiveCompetition() {
                     </tr>
                     `;
                     });
-                    // Sisipkan komponen card ke dalam elemen dengan id #content
+                    // Sisipkan komponen ke dalam elemen dengan id #competitions-list
                     document.getElementById("competitions-list").innerHTML = teamCompetitionsHTML;
                 });
             }
@@ -202,7 +202,7 @@ function getActiveCompetition() {
         .then(function(data) {
             // Objek/array JavaScript dari response.json() masuk lewat data.
 
-            // Menyusun komponen card artikel secara dinamis
+            // Menyusun komponen secara dinamis
             let teamCompetitionsHTML = "";
             data.activeCompetitions.forEach(function(competitions) {
                 teamCompetitionsHTML += `
@@ -211,7 +211,7 @@ function getActiveCompetition() {
                 </tr>
                 `;
             });
-            // Sisipkan komponen card ke dalam elemen dengan id #content
+            // Sisipkan komponen card ke dalam elemen dengan id #competitions-list
             document.getElementById("competitions-list").innerHTML = teamCompetitionsHTML;
         })
         .catch(error);
@@ -241,7 +241,7 @@ function getStandings() {
                         </tr>
                         `;
                     });
-                    // Sisipkan komponen card ke dalam elemen dengan id #content
+                    // Sisipkan komponen ke dalam elemen dengan id #standings
                     document.getElementById("standings").innerHTML = standingsHTML;
                 });
             }
@@ -258,7 +258,7 @@ function getStandings() {
         .then(function(data) {
             // Objek/array JavaScript dari response.json() masuk lewat data.
 
-            // Menyusun komponen card artikel secara dinamis
+            // Menyusun komponen secara dinamis
             let standingsHTML = "";
             data.standings[0].table.forEach(function(standing) {
                 url = standing.team.crestUrl;
@@ -278,7 +278,7 @@ function getStandings() {
                 </tr>
                 `;
             });
-            // Sisipkan komponen card ke dalam elemen dengan id #content
+            // Sisipkan komponen ke dalam elemen dengan id #standings
             document.getElementById("standings").innerHTML = standingsHTML;
         })
         .catch(error);
@@ -326,7 +326,7 @@ function getScheduledMatch() {
                         </div>
                         `;
                     });
-                    // Sisipkan komponen card ke dalam elemen dengan id #content
+                    // Sisipkan komponen ke dalam elemen dengan id #schedule-match
                     document.getElementById("schedule-match").innerHTML = matchScheduledHTML;
                 });
             }
@@ -343,7 +343,7 @@ function getScheduledMatch() {
         .then(function(data) {
             // Objek/array JavaScript dari response.json() masuk lewat data.
 
-            // Menyusun komponen card artikel secara dinamis
+            // Menyusun komponen secara dinamis
             let matchScheduledHTML = "";
             data.matches.forEach(function(match) {
                 let json = `\"${match.utcDate}\"`;
@@ -381,7 +381,7 @@ function getScheduledMatch() {
                 </div>
                 `;
             });
-            // Sisipkan komponen card ke dalam elemen dengan id #content
+            // Sisipkan komponen ke dalam elemen dengan id #schedule-match
             document.getElementById("schedule-match").innerHTML = matchScheduledHTML;
         })
         .catch(error);
@@ -429,7 +429,7 @@ function getFinishedMatch() {
                         </div>
                         `;
                     });
-                    // Sisipkan komponen card ke dalam elemen dengan id #content
+                    // Sisipkan komponen ke dalam elemen dengan id #finish-match
                     document.getElementById("finish-match").innerHTML = matchFinishedHTML;
                 });
             }
@@ -446,7 +446,7 @@ function getFinishedMatch() {
         .then(function(data) {
             // Objek/array JavaScript dari response.json() masuk lewat data.
 
-            // Menyusun komponen card artikel secara dinamis
+            // Menyusun komponen secara dinamis
             let matchFinishedHTML = "";
             data.matches.forEach(function(match) {
                 let json = `\"${match.utcDate}\"`;
@@ -484,7 +484,7 @@ function getFinishedMatch() {
                 </div>
                 `;
             });
-            // Sisipkan komponen card ke dalam elemen dengan id #content
+            // Sisipkan komponen ke dalam elemen dengan id #finish-match
             document.getElementById("finish-match").innerHTML = matchFinishedHTML;
         })
         .catch(error);
@@ -545,7 +545,7 @@ function getMatchById() {
                         </div>
                     </div>
                     `;
-                        // Sisipkan komponen card ke dalam elemen dengan id #content
+                        // Sisipkan komponen ke dalam elemen dengan id #match-details
                         document.getElementById("match-details").innerHTML = matchFinishedDataHTML;
                         resolve(data);
                     });
@@ -563,7 +563,7 @@ function getMatchById() {
             .then(function(data) {
                 // Objek/array JavaScript dari response.json() masuk lewat data.
 
-                // Menyusun komponen card artikel secara dinamis
+                // Menyusun komponen secara dinamis
                 console.log(data);
                 let json = `\"${data.matches[0].utcDate}\"`;
                 let dateStr = JSON.parse(json);
@@ -608,7 +608,7 @@ function getMatchById() {
                 </div>
             </div>
             `;
-                // Sisipkan komponen card ke dalam elemen dengan id #content
+                // Sisipkan komponen ke dalam elemen dengan id #match-details
                 document.getElementById("match-details").innerHTML = matchFinishedDataHTML;
                 resolve(data);
             })
@@ -658,7 +658,7 @@ function getSavedMatch() {
             </div>
             `;
         });
-        // Sisipkan komponen card ke dalam elemen dengan id #body-content
+        // Sisipkan komponen ke dalam elemen dengan id #saved-match
         document.getElementById("saved-match").innerHTML = matchSavedHTML;
     });
 }
@@ -712,7 +712,7 @@ function getSavedMatchById() {
                 </div>
             </div>
     `;
-        // Sisipkan komponen card ke dalam elemen dengan id #content
+        // Sisipkan komponen card ke dalam elemen dengan id #match-details
         document.getElementById("match-details").innerHTML = matchSavedByIdHTML;
     });
 }
