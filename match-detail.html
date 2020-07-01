@@ -92,15 +92,9 @@
         document.addEventListener("DOMContentLoaded", function() {
             let urlParams = new URLSearchParams(window.location.search);
             let isFromSaved = urlParams.get("saved");
-            let statusParam = urlParams.get("status");
             let matchdayParam = urlParams.get("matchday");
             console.log("matchday " + matchdayParam);
             let indexOf = matchdayParam;
-            if (statusParam === "FINISHED") {
-                indexOf = indexOf - 1;
-            } else if (statusParam === "SCHEDULED") {
-                indexOf = (matchdayParam - matchdayParam + 1);
-            };
             console.log("index array = " + indexOf);
             let btnSave = document.getElementById("save");
             let btnRemove = document.getElementById("remove");

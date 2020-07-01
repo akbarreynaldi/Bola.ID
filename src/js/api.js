@@ -284,13 +284,16 @@ function getStandings() {
         .catch(error);
 }
 
-function getScheduledMatch() {
+function getMatch() {
     if ("caches" in window) {
-        caches.match(base_url + "teams/86/matches?status=SCHEDULED").then(function(response) {
+        caches.match(base_url + "teams/86/matches").then(function(response) {
             if (response) {
                 response.json().then(function(data) {
-                    let matchScheduledHTML = "";
+                    console.log(data);
+                    let matchDataHTML = "";
                     data.matches.forEach(function(match) {
+                        let matchFinish = `<i class="tiny material-icons">check</i>`;
+                        let matchSchedule = `<i class="tiny material-icons">schedule</i>`;
                         let json = `\"${match.utcDate}\"`;
                         let dateStr = JSON.parse(json);
                         let date = new Date(dateStr);
@@ -303,12 +306,12 @@ function getScheduledMatch() {
                             return n
                         }
                         let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
-                        matchScheduledHTML += `
+                        matchDataHTML += `
                         <div class="col s12 m6">
                         <div class="card-match waves-effect hoverable">
                             <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}&matchday=${match.matchday}">
                                 <div class="card-content black-text">
-                                    <h4>Matchday ${match.matchday} - ${match.competition.name} <i class="tiny material-icons">schedule</i> </h4>
+                                    <h4>Matchday ${match.matchday} - ${match.competition.name} ${match.status == "FINISHED" ? matchFinish : matchSchedule} </h4>
                                     <p>${formatted_date}</p>
                                     <ul class="collection">
                                         <li class="collection-item">
@@ -327,13 +330,13 @@ function getScheduledMatch() {
                         `;
                     });
                     // Sisipkan komponen ke dalam elemen dengan id #schedule-match
-                    document.getElementById("schedule-match").innerHTML = matchScheduledHTML;
+                    document.getElementById("match-data").innerHTML = matchDataHTML;
                 });
             }
         });
     }
 
-    fetch(base_url + "teams/86/matches?status=SCHEDULED", {
+    fetch(base_url + "teams/86/matches", {
             headers: {
                 'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
             }
@@ -344,8 +347,11 @@ function getScheduledMatch() {
             // Objek/array JavaScript dari response.json() masuk lewat data.
 
             // Menyusun komponen secara dinamis
-            let matchScheduledHTML = "";
+            console.log(data);
+            let matchDataHTML = "";
             data.matches.forEach(function(match) {
+                let matchFinish = `<i class="tiny material-icons">check</i>`;
+                let matchSchedule = `<i class="tiny material-icons">schedule</i>`;
                 let json = `\"${match.utcDate}\"`;
                 let dateStr = JSON.parse(json);
                 let date = new Date(dateStr);
@@ -358,12 +364,12 @@ function getScheduledMatch() {
                     return n
                 }
                 let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
-                matchScheduledHTML += `
+                matchDataHTML += `
                 <div class="col s12 m6">
                 <div class="card-match waves-effect hoverable">
                     <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}&matchday=${match.matchday}">
                         <div class="card-content black-text">
-                            <h4>Matchday ${match.matchday} - ${match.competition.name} <i class="tiny material-icons">schedule</i> </h4>
+                            <h4>Matchday ${match.matchday} - ${match.competition.name} ${match.status == "FINISHED" ? matchFinish : matchSchedule} </h4>
                             <p>${formatted_date}</p>
                             <ul class="collection">
                                 <li class="collection-item">
@@ -382,110 +388,7 @@ function getScheduledMatch() {
                 `;
             });
             // Sisipkan komponen ke dalam elemen dengan id #schedule-match
-            document.getElementById("schedule-match").innerHTML = matchScheduledHTML;
-        })
-        .catch(error);
-}
-
-function getFinishedMatch() {
-    if ("caches" in window) {
-        caches.match(base_url + "teams/86/matches?status=FINISHED").then(function(response) {
-            if (response) {
-                response.json().then(function(data) {
-                    let matchFinishedHTML = "";
-                    data.matches.forEach(function(match) {
-                        let json = `\"${match.utcDate}\"`;
-                        let dateStr = JSON.parse(json);
-                        let date = new Date(dateStr);
-                        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-                        function appendLeadingZeroes(n) {
-                            if (n <= 9) {
-                                return "0" + n;
-                            }
-                            return n
-                        }
-                        let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
-                        matchFinishedHTML += `
-                        <div class="col s12 m6">
-                        <div class="card-match waves-effect hoverable">
-                            <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}&matchday=${match.matchday}">
-                                <div class="card-content black-text">
-                                    <h4>Matchday ${match.matchday} - ${match.competition.name} <i class="tiny material-icons">check</i> </h4>
-                                    <p>${formatted_date}</p>
-                                    <ul class="collection">
-                                    <li class="collection-item">
-                                        <span class="title">${match.homeTeam.name}</span>
-                                        <p class="secondary-content">${match.score.fullTime.homeTeam}</p>
-                                    </li>
-                                    <li class="collection-item">
-                                        <span class="title">${match.awayTeam.name}</span>
-                                        <p class="secondary-content">${match.score.fullTime.awayTeam}</p>
-                                    </li>
-                                </ul>
-                                </div>
-                            </a>
-                        </div>
-                        </div>
-                        `;
-                    });
-                    // Sisipkan komponen ke dalam elemen dengan id #finish-match
-                    document.getElementById("finish-match").innerHTML = matchFinishedHTML;
-                });
-            }
-        });
-    }
-
-    fetch(base_url + "teams/86/matches?status=FINISHED", {
-            headers: {
-                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
-            }
-        })
-        .then(status)
-        .then(json)
-        .then(function(data) {
-            // Objek/array JavaScript dari response.json() masuk lewat data.
-
-            // Menyusun komponen secara dinamis
-            let matchFinishedHTML = "";
-            data.matches.forEach(function(match) {
-                let json = `\"${match.utcDate}\"`;
-                let dateStr = JSON.parse(json);
-                let date = new Date(dateStr);
-                const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-                function appendLeadingZeroes(n) {
-                    if (n <= 9) {
-                        return "0" + n;
-                    }
-                    return n
-                }
-                let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
-                matchFinishedHTML += `
-                <div class="col s12 m6">
-                <div class="card-match waves-effect hoverable">
-                    <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}&matchday=${match.matchday}">
-                        <div class="card-content black-text">
-                            <h4>Matchday ${match.matchday} - ${match.competition.name} <i class="tiny material-icons">check</i> </h4>
-                            <p>${formatted_date}</p>
-                            <ul class="collection">
-                            <li class="collection-item">
-                                <span class="title">${match.homeTeam.name}</span>
-                                <p class="secondary-content">${match.score.fullTime.homeTeam}</p>
-                            </li>
-                            <li class="collection-item">
-                                <span class="title">${match.awayTeam.name}</span>
-                                <p class="secondary-content">${match.score.fullTime.awayTeam}</p>
-                            </li>
-                        </ul>
-                        </div>
-                    </a>
-                </div>
-                </div>
-                `;
-            });
-            // Sisipkan komponen ke dalam elemen dengan id #finish-match
-            document.getElementById("finish-match").innerHTML = matchFinishedHTML;
+            document.getElementById("match-data").innerHTML = matchDataHTML;
         })
         .catch(error);
 }
@@ -494,20 +397,13 @@ function getMatchById() {
     return new Promise(function(resolve, reject) {
 
         let urlParams = new URLSearchParams(window.location.search);
-        let idParam = urlParams.get("id");
-        let statusParam = urlParams.get("status");
         let matchdayParam = urlParams.get("matchday");
 
         if ("caches" in window) {
-            caches.match(base_url + "teams/86/matches?status=" + statusParam).then(function(response) {
+            caches.match(base_url + "teams/86/matches").then(function(response) {
                 if (response) {
                     response.json().then(function(data) {
                         let indexMatch = matchdayParam;
-                        if (statusParam === "FINISHED") {
-                            indexMatch = indexMatch;
-                        } else if (statusParam === "SCHEDULED") {
-                            indexMatch = (matchdayParam - matchdayParam + 1);
-                        };
                         console.log(data);
                         console.log(indexMatch);
                         let json = `\"${data.matches[indexMatch-1].utcDate}\"`;
@@ -561,7 +457,7 @@ function getMatchById() {
             });
         }
 
-        fetch(base_url + "teams/86/matches?status=" + statusParam, {
+        fetch(base_url + "teams/86/matches", {
                 headers: {
                     'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
                 }
@@ -573,11 +469,6 @@ function getMatchById() {
 
                 // Menyusun komponen secara dinamis
                 let indexMatch = matchdayParam;
-                if (statusParam === "FINISHED") {
-                    indexMatch = indexMatch;
-                } else if (statusParam === "SCHEDULED") {
-                    indexMatch = (matchdayParam - matchdayParam + 1);
-                };
                 console.log(data);
                 console.log(indexMatch);
                 let json = `\"${data.matches[indexMatch-1].utcDate}\"`;
@@ -681,17 +572,11 @@ function getSavedMatch() {
 function getSavedMatchById() {
     let urlParams = new URLSearchParams(window.location.search);
     let idParam = urlParams.get("id");
-    let statusParam = urlParams.get("status");
     let matchdayParam = urlParams.get("matchday");
 
     getById(idParam).then(function(matches) {
         let matchSavedByIdHTML = '';
         let indexMatch = matchdayParam;
-        if (statusParam === "FINISHED") {
-            indexMatch = indexMatch;
-        } else if (statusParam === "SCHEDULED") {
-            indexMatch = (matchdayParam - matchdayParam + 1);
-        };
         let json = `\"${matches.utcDate}\"`;
         let dateStr = JSON.parse(json);
         let date = new Date(dateStr);

@@ -53,8 +53,7 @@ function loadPage(page) {
             } else if (page === "standings") {
                 getStandings();
             } else if (page === "match") {
-                getScheduledMatch();
-                getFinishedMatch();
+                getMatch();
             } else if (page === "saved") {
                 getSavedMatch();
             }
