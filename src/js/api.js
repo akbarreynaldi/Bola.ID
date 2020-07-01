@@ -43,8 +43,11 @@ function getSquad() {
                         </div>
                         `;
                     });
-                    // Sisipkan komponen ke dalam elemen dengan id #squad-data
-                    document.getElementById("squad-data").innerHTML = squadsHTML;
+                    // Sisipkan komponen ke dalam elemen dengan id #squad-data jika ditemukan
+                    let squadElem = document.getElementById("squad-data");
+                    if (squadElem != null) {
+                        document.getElementById("squad-data").innerHTML = squadsHTML;
+                    }
                 });
             }
         });
@@ -75,8 +78,11 @@ function getSquad() {
                 </div>
                 `;
             });
-            // Sisipkan komponen ke dalam elemen dengan id #squad-data
-            document.getElementById("squad-data").innerHTML = squadsHTML;
+            // Sisipkan komponen ke dalam elemen dengan id #squad-data jika ditemukan
+            let squadElem = document.getElementById("squad-data");
+            if (squadElem != null) {
+                document.getElementById("squad-data").innerHTML = squadsHTML;
+            }
         })
         .catch(error);
 }
@@ -117,8 +123,11 @@ function getTeamInfo() {
                         </div>
                     </div>
                     `;
-                    // Sisipkan komponen ke dalam elemen dengan id #team-data
-                    document.getElementById("team-data").innerHTML = teamInfoHTML;
+                    // Sisipkan komponen ke dalam elemen dengan id #team-data jika ditemukan
+                    let teamInfoElem = document.getElementById("team-data");
+                    if (teamInfoElem != null) {
+                        document.getElementById("team-data").innerHTML = teamInfoHTML;
+                    }
                 });
             }
         });
@@ -166,8 +175,11 @@ function getTeamInfo() {
                 </div>
             </div>
             `;
-            // Sisipkan komponen ke dalam elemen dengan id #team-data
-            document.getElementById("team-data").innerHTML = teamInfoHTML;
+            // Sisipkan komponen ke dalam elemen dengan id #team-data jika ditemukan
+            let teamInfoElem = document.getElementById("team-data");
+            if (teamInfoElem != null) {
+                document.getElementById("team-data").innerHTML = teamInfoHTML;
+            }
         })
         .catch(error);
 }
@@ -185,8 +197,11 @@ function getActiveCompetition() {
                     </tr>
                     `;
                     });
-                    // Sisipkan komponen ke dalam elemen dengan id #competitions-list
-                    document.getElementById("competitions-list").innerHTML = teamCompetitionsHTML;
+                    // Sisipkan komponen card ke dalam elemen dengan id #competitions-list jika ditemukan
+                    let teamCompetitionsElem = document.getElementById("competitions-list");
+                    if (teamCompetitionsElem != null) {
+                        document.getElementById("competitions-list").innerHTML = teamCompetitionsHTML;
+                    }
                 });
             }
         });
@@ -211,8 +226,11 @@ function getActiveCompetition() {
                 </tr>
                 `;
             });
-            // Sisipkan komponen card ke dalam elemen dengan id #competitions-list
-            document.getElementById("competitions-list").innerHTML = teamCompetitionsHTML;
+            // Sisipkan komponen card ke dalam elemen dengan id #competitions-list jika ditemukan
+            let teamCompetitionsElem = document.getElementById("competitions-list");
+            if (teamCompetitionsElem != 'null') {
+                document.getElementById("competitions-list").innerHTML = teamCompetitionsHTML;
+            }
         })
         .catch(error);
 }
@@ -241,8 +259,11 @@ function getStandings() {
                         </tr>
                         `;
                     });
-                    // Sisipkan komponen ke dalam elemen dengan id #standings
-                    document.getElementById("standings").innerHTML = standingsHTML;
+                    // Sisipkan komponen card ke dalam elemen dengan id #standings jika ditemukan
+                    let standingsElem = document.getElementById("standings");
+                    if (standingsElem != null) {
+                        document.getElementById("standings").innerHTML = standingsHTML;
+                    }
                 });
             }
         });
@@ -278,8 +299,11 @@ function getStandings() {
                 </tr>
                 `;
             });
-            // Sisipkan komponen ke dalam elemen dengan id #standings
-            document.getElementById("standings").innerHTML = standingsHTML;
+            // Sisipkan komponen card ke dalam elemen dengan id #standings jika ditemukan
+            let standingsElem = document.getElementById("standings");
+            if (standingsElem != null) {
+                document.getElementById("standings").innerHTML = standingsHTML;
+            }
         })
         .catch(error);
 }
@@ -289,7 +313,6 @@ function getMatch() {
         caches.match(base_url + "teams/86/matches").then(function(response) {
             if (response) {
                 response.json().then(function(data) {
-                    console.log(data);
                     let matchDataHTML = "";
                     data.matches.forEach(function(match) {
                         let matchFinish = `<i class="tiny material-icons">check</i>`;
@@ -329,8 +352,11 @@ function getMatch() {
                         </div>
                         `;
                     });
-                    // Sisipkan komponen ke dalam elemen dengan id #schedule-match
-                    document.getElementById("match-data").innerHTML = matchDataHTML;
+                    // Sisipkan komponen ke dalam elemen dengan id #match-data jika ditemukan
+                    let matchElem = document.getElementById("match-data");
+                    if (matchElem != null) {
+                        document.getElementById("match-data").innerHTML = matchDataHTML;
+                    }
                 });
             }
         });
@@ -347,7 +373,6 @@ function getMatch() {
             // Objek/array JavaScript dari response.json() masuk lewat data.
 
             // Menyusun komponen secara dinamis
-            console.log(data);
             let matchDataHTML = "";
             data.matches.forEach(function(match) {
                 let matchFinish = `<i class="tiny material-icons">check</i>`;
@@ -387,8 +412,11 @@ function getMatch() {
                 </div>
                 `;
             });
-            // Sisipkan komponen ke dalam elemen dengan id #schedule-match
-            document.getElementById("match-data").innerHTML = matchDataHTML;
+            // Sisipkan komponen ke dalam elemen dengan id #match-data jika ditemukan
+            let matchElem = document.getElementById("match-data");
+            if (matchElem != null) {
+                document.getElementById("match-data").innerHTML = matchDataHTML;
+            }
         })
         .catch(error);
 }
@@ -404,8 +432,6 @@ function getMatchById() {
                 if (response) {
                     response.json().then(function(data) {
                         let indexMatch = matchdayParam;
-                        console.log(data);
-                        console.log(indexMatch);
                         let json = `\"${data.matches[indexMatch-1].utcDate}\"`;
                         let dateStr = JSON.parse(json);
                         let date = new Date(dateStr);
@@ -449,8 +475,11 @@ function getMatchById() {
                         </div>
                     </div>
                     `;
-                        // Sisipkan komponen ke dalam elemen dengan id #match-details
-                        document.getElementById("match-details").innerHTML = matchFinishedDataHTML;
+                        // Sisipkan komponen ke dalam elemen dengan id #match-details jika ditemukan
+                        let detailElem = document.getElementById("match-details");
+                        if (detailElem != null) {
+                            document.getElementById("match-details").innerHTML = matchFinishedDataHTML;
+                        }
                         resolve(data);
                     });
                 }
@@ -469,8 +498,6 @@ function getMatchById() {
 
                 // Menyusun komponen secara dinamis
                 let indexMatch = matchdayParam;
-                console.log(data);
-                console.log(indexMatch);
                 let json = `\"${data.matches[indexMatch-1].utcDate}\"`;
                 let dateStr = JSON.parse(json);
                 let date = new Date(dateStr);
@@ -514,8 +541,11 @@ function getMatchById() {
                 </div>
             </div>
             `;
-                // Sisipkan komponen ke dalam elemen dengan id #match-details
-                document.getElementById("match-details").innerHTML = matchFinishedDataHTML;
+                // Sisipkan komponen ke dalam elemen dengan id #match-details jika ditemukan
+                let detailElem = document.getElementById("match-details");
+                if (detailElem != null) {
+                    document.getElementById("match-details").innerHTML = matchFinishedDataHTML;
+                }
                 resolve(data);
             })
     });
@@ -523,49 +553,60 @@ function getMatchById() {
 
 function getSavedMatch() {
     getAll().then(function(match) {
-        console.log(match);
         // Menyusun komponen card artikel secara dinamis
         let matchSavedHTML = "";
-        match.forEach(function(matches) {
-            let matchFinish = `<i class="tiny material-icons">check</i>`;
-            let matchSchedule = `<i class="tiny material-icons">schedule</i>`;
-            let json = `\"${matches.utcDate}\"`;
-            let dateStr = JSON.parse(json);
-            let date = new Date(dateStr);
-            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        if (match == null) {
+            match.forEach(function(matches) {
+                let matchFinish = `<i class="tiny material-icons">check</i>`;
+                let matchSchedule = `<i class="tiny material-icons">schedule</i>`;
+                let json = `\"${matches.utcDate}\"`;
+                let dateStr = JSON.parse(json);
+                let date = new Date(dateStr);
+                const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-            function appendLeadingZeroes(n) {
-                if (n <= 9) {
-                    return "0" + n;
+                function appendLeadingZeroes(n) {
+                    if (n <= 9) {
+                        return "0" + n;
+                    }
+                    return n
                 }
-                return n
-            }
-            let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
-            matchSavedHTML += `
-            <div class="col s12 m6">
-                <div class="card-match waves-effect hoverable">
-                    <a href="./match-detail.html?status=${matches.status}&id=${matches.id}&matchday=${matches.matchday}&saved=true">
-                        <div class="card-content black-text">
-                            <h4>Matchday ${matches.matchday} - ${matches.competition.name} ${matches.status == "FINISHED" ? matchFinish : matchSchedule} </h4>
-                            <p>${formatted_date}</p>
-                            <ul class="collection">
-                            <li class="collection-item">
-                                <span class="title">${matches.homeTeam.name}</span>
-                                <p class="secondary-content">${matches.score.fullTime.homeTeam == null ? "-" : matches.score.fullTime.homeTeam}</p>
-                            </li>
-                            <li class="collection-item">
-                                <span class="title">${matches.awayTeam.name}</span>
-                                <p class="secondary-content">${matches.score.fullTime.awayTeam == null ? "-" : matches.score.fullTime.awayTeam}</p>
-                            </li>
-                        </ul>
-                        </div>
-                    </a>
+                let formatted_date = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + "<br>" + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + " WIB";
+                matchSavedHTML += `
+                <div class="col s12 m6">
+                    <div class="card-match waves-effect hoverable">
+                        <a href="./match-detail.html?status=${matches.status}&id=${matches.id}&matchday=${matches.matchday}&saved=true">
+                            <div class="card-content black-text">
+                                <h4>Matchday ${matches.matchday} - ${matches.competition.name} ${matches.status == "FINISHED" ? matchFinish : matchSchedule} </h4>
+                                <p>${formatted_date}</p>
+                                <ul class="collection">
+                                <li class="collection-item">
+                                    <span class="title">${matches.homeTeam.name}</span>
+                                    <p class="secondary-content">${matches.score.fullTime.homeTeam == null ? "-" : matches.score.fullTime.homeTeam}</p>
+                                </li>
+                                <li class="collection-item">
+                                    <span class="title">${matches.awayTeam.name}</span>
+                                    <p class="secondary-content">${matches.score.fullTime.awayTeam == null ? "-" : matches.score.fullTime.awayTeam}</p>
+                                </li>
+                            </ul>
+                            </div>
+                        </a>
+                    </div>
                 </div>
+                `;
+            });
+        } else {
+            matchSavedHTML += `
+            <div class="col s12 center-align section-match-data" id="no-data">
+                <p>No match data has been saved yet</p>
             </div>
             `;
-        });
-        // Sisipkan komponen ke dalam elemen dengan id #saved-match
-        document.getElementById("saved-match").innerHTML = matchSavedHTML;
+        }
+
+        // Sisipkan komponen ke dalam elemen dengan id #saved-match jika ditemukan
+        let savedElem = document.getElementById("saved-match");
+        if (savedElem != null) {
+            document.getElementById("saved-match").innerHTML = matchSavedHTML;
+        }
     });
 }
 
@@ -620,7 +661,10 @@ function getSavedMatchById() {
                 </div>
             </div>
     `;
-        // Sisipkan komponen card ke dalam elemen dengan id #match-details
-        document.getElementById("match-details").innerHTML = matchSavedByIdHTML;
+        // Sisipkan komponen card ke dalam elemen dengan id #match-details jika ditemukan
+        let detailSavedElem = document.getElementById("saved-match");
+        if (detailSavedElem != null) {
+            document.getElementById("match-details").innerHTML = matchSavedByIdHTML;
+        }
     });
 }

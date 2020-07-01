@@ -11,10 +11,7 @@ function saveForLater(data, indexOf) {
         .then(function(db) {
             let tx = db.transaction("match", "readwrite");
             let store = tx.objectStore("match");
-            console.log(data);
-            console.log(indexOf);
             store.add(data.matches[indexOf]);
-            console.log(data.matches[indexOf].id);
             return tx.complete;
         })
         .then(function() {

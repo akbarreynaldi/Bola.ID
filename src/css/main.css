@@ -7,7 +7,7 @@ body {
 header {
     margin-top: -68px;
     padding: 180px 0 165px;
-    background-image: url("../images/header.jpg");
+    background-image: url("../images/header-background.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -161,6 +161,11 @@ header {
 .section-match .section-match-heading h2,
 .section-match .section-match-heading p {
     color: #071c4d;
+}
+
+.section-match-data #no-data p {
+    font-size: 18px;
+    margin: 0;
 }
 
 .section-match-content .section-match-data .card-match {

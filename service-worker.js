@@ -1,4 +1,4 @@
-const version = "0.1.5";
+const version = "0.1.7";
 const CACHE_NAME = `RealMadrid-${version}`;
 let urlsToCache = [
     "/",
@@ -21,8 +21,8 @@ let urlsToCache = [
     "src/images/PLAYER.jpg",
     "src/images/GK.jpg",
     "src/images/COACH.jpg",
-    "src/images/header.jpg",
-    "src/images/Real_Madrid_Logo.svg",
+    "src/images/header-background.jpg",
+    "src/images/Real_Madrid_Logo.png",
     "src/images/notification.png",
     "/src/images/icons/icon-72x72.png",
     "/src/images/icons/icon-96x96.png",
