@@ -16,10 +16,18 @@
     <!-- ios support -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-touch-fullscreen" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Expo" />
+    <meta name="apple-mobile-web-app-title" content="Real Madrid" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <link rel="apple-touch-icon" sizes="512x512" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
     <link rel="apple-touch-startup-image" href="/src/images/splash/launch-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
     <link rel="apple-touch-startup-image" href="/src/images/splash/launch-750x1294.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
     <link rel="apple-touch-startup-image" href="/src/images/splash/launch-1242x2148.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
@@ -27,6 +35,10 @@
     <link rel="apple-touch-startup-image" href="/src/images/splash/launch-1536x2048.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
     <link rel="apple-touch-startup-image" href="/src/images/splash/launch-1668x2224.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
     <link rel="apple-touch-startup-image" href="/src/images/splash/launch-2048x2732.png" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+    <!-- favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 </head>
 
 <body>
@@ -122,19 +134,17 @@
                 btnRemove.style.display = 'none';
                 btnBackSaved.style.display = 'none';
             }
-            //function untuk menyimpan data ke indexedDB jika FAB save di klik
             let save = document.getElementById("save");
             save.onclick = function() {
-                    // Toast notification jika FAB save di klik
-                    M.toast({
-                        html: 'Match data has been saved!'
-                    })
-                    console.log("Tombol FAB save di klik.");
-                    item.then(function(data) {
-                        saveForLater(data, indexOf);
-                    });
-                }
-                //function untuk menghapus data berdasarkan id indexedDB jika FAB save di klik
+                // Toast notification jika FAB save di klik
+                M.toast({
+                    html: 'Match data has been saved!'
+                })
+                console.log("Tombol FAB save di klik.");
+                item.then(function(data) {
+                    saveForLater(data, indexOf);
+                });
+            }
             let remove = document.getElementById("remove");
             remove.onclick = function() {
                 console.log("Tombol FAB remove di klik.");
