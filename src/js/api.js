@@ -499,7 +499,7 @@ function getMatchById() {
         let matchdayParam = urlParams.get("matchday");
 
         if ("caches" in window) {
-            caches.match(base_url + "teams/86/matches?status=" + statusParam + "&id=" + idParam).then(function(response) {
+            caches.match(base_url + "teams/86/matches?status=" + statusParam).then(function(response) {
                 if (response) {
                     response.json().then(function(data) {
                         let indexMatch = matchdayParam;
@@ -561,7 +561,7 @@ function getMatchById() {
             });
         }
 
-        fetch(base_url + "teams/86/matches?status=" + statusParam + "&id=" + idParam, {
+        fetch(base_url + "teams/86/matches?status=" + statusParam, {
                 headers: {
                     'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
                 }

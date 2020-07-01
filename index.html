@@ -129,6 +129,16 @@
             }
             return outputArray;
         }
+
+        // REQUEST API UNTUK PERTAMA KALI
+        document.addEventListener("DOMContentLoaded", function() {
+            getSquad();
+            getTeamInfo();
+            getActiveCompetition();
+            getStandings();
+            getScheduledMatch();
+            getFinishedMatch();
+        });
     </script>
 </body>
 
