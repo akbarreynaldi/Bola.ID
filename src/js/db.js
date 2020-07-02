@@ -28,8 +28,8 @@ function getAll() {
                 let store = tx.objectStore("match");
                 return store.getAll();
             })
-            .then(function(match) {
-                resolve(match);
+            .then(function(matches) {
+                resolve(matches);
             });
     });
 }
@@ -41,7 +41,7 @@ function getById(id) {
             .then(function(db) {
                 let tx = db.transaction("match", "readonly");
                 let store = tx.objectStore("match");
-                return store.get(id);
+                return store.get(Number(id));
             })
             .then(function(match) {
                 resolve(match);
@@ -50,12 +50,12 @@ function getById(id) {
 }
 
 //Fungsi untuk menghapus match data berdasarkan id dari indexedDB dengan nama database match
-function deleteSaved(data, indexOf) {
+function deleteSaved(data) {
     dbPromised
         .then(function(db) {
             let tx = db.transaction("match", "readwrite");
             let store = tx.objectStore("match");
-            store.delete(data.matches[indexOf].id);
+            store.delete(data.id);
             return tx.complete;
         })
         .then(function() {
