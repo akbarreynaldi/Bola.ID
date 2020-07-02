@@ -1,4 +1,4 @@
-const version = "0.1.7";
+const version = "0.1.8";
 const CACHE_NAME = `RealMadrid-${version}`;
 let urlsToCache = [
     "/",
