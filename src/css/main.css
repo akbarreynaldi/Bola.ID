@@ -12,6 +12,10 @@ header {
     background-position: center;
 }
 
+header h2 {
+    font-size: 24px;
+}
+
 .section-club-stats {
     margin-top: -50px;
 }
