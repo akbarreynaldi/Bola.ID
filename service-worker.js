@@ -1,6 +1,4 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.3/workbox-sw.js');
-
-const version = "0.2.0";
+const version = "0.2.2";
 const CACHE_NAME = `RealMadrid-${version}`;
 let urlsToCache = [
     "/",
@@ -33,12 +31,12 @@ let urlsToCache = [
     "/src/js/api.js",
     "/src/js/idb.js",
     "/src/js/db.js",
-    "src/images/PLAYER.jpg",
-    "src/images/GK.jpg",
-    "src/images/COACH.jpg",
-    "src/images/header-background.jpg",
-    "src/images/Real_Madrid_Logo.png",
-    "src/images/notification.png",
+    "/src/images/PLAYER.jpg",
+    "/src/images/GK.jpg",
+    "/src/images/COACH.jpg",
+    "/src/images/header-background.jpg",
+    "/src/images/Real_Madrid_Logo.png",
+    "/src/images/notification.png",
     "/src/images/icons/icon-72x72.png",
     "/src/images/icons/icon-96x96.png",
     "/src/images/icons/icon-128x128.png",

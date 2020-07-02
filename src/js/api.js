@@ -33,11 +33,11 @@ function getSquad() {
                     data.squad.forEach(function(squad) {
                         squadsHTML += `
                         <div class="col s6 m4 l3">
-                            <div class="card-squad waves-effect hoverable" style="background-image: url(${squad.role == "PLAYER" & squad.position == "Goalkeeper" ? '../src/images/GK.jpg' : squad.role == "PLAYER" ? '../src/images/PLAYER.jpg' : '../src/images/COACH.jpg' });">
+                            <div class="card-squad waves-effect hoverable" style="background-image: url(${squad.role === "PLAYER" & squad.position === "Goalkeeper" ? '../src/images/GK.jpg' : squad.role === "PLAYER" ? '../src/images/PLAYER.jpg' : '../src/images/COACH.jpg' });">
                                 <div class="squad-stats">
-                                    <div class="squad-number left left-align">${squad.shirtNumber == null ? " " : squad.shirtNumber}</div>
+                                    <div class="squad-number left left-align">${squad.shirtNumber === null ? " " : squad.shirtNumber}</div>
                                     <div class="squad-name left-align truncate">${squad.name}</div>
-                                    <div class="squad-position left-align truncate">${squad.role == "PLAYER" ? squad.position : squad.role}</div>
+                                    <div class="squad-position left-align truncate">${squad.role === "PLAYER" ? squad.position : squad.role}</div>
                                 </div>
                             </div>
                         </div>
@@ -68,11 +68,11 @@ function getSquad() {
             data.squad.forEach(function(squad) {
                 squadsHTML += `
                 <div class="col s6 m4 l3">
-                    <div class="card-squad waves-effect hoverable" style="background-image: url(${squad.role == "PLAYER" & squad.position == "Goalkeeper" ? '../src/images/GK.jpg' : squad.role == "PLAYER" ? '../src/images/PLAYER.jpg' : '../src/images/COACH.jpg' });">
+                    <div class="card-squad waves-effect hoverable" style="background-image: url(${squad.role === "PLAYER" & squad.position === "Goalkeeper" ? '../src/images/GK.jpg' : squad.role === "PLAYER" ? '../src/images/PLAYER.jpg' : '../src/images/COACH.jpg' });">
                         <div class="squad-stats">
-                            <div class="squad-number left left-align">${squad.shirtNumber == null ? " " : squad.shirtNumber}</div>
+                            <div class="squad-number left left-align">${squad.shirtNumber === null ? " " : squad.shirtNumber}</div>
                             <div class="squad-name left-align truncate">${squad.name}</div>
-                            <div class="squad-position left-align truncate">${squad.role == "PLAYER" ? squad.position : squad.role}</div>
+                            <div class="squad-position left-align truncate">${squad.role === "PLAYER" ? squad.position : squad.role}</div>
                         </div>
                     </div>
                 </div>
@@ -334,16 +334,16 @@ function getMatch() {
                         <div class="card-match waves-effect hoverable">
                             <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}&matchday=${match.matchday}">
                                 <div class="card-content black-text">
-                                    <h4>Matchday ${match.matchday} - ${match.competition.name} ${match.status == "FINISHED" ? matchFinish : matchSchedule} </h4>
+                                    <h4>Matchday ${match.matchday} - ${match.competition.name} ${match.status === "FINISHED" ? matchFinish : matchSchedule} </h4>
                                     <p>${formatted_date}</p>
                                     <ul class="collection">
                                         <li class="collection-item">
                                             <span class="title">${match.homeTeam.name}</span>
-                                            <p class="secondary-content">${match.score.fullTime.homeTeam == null ? "-" : match.score.fullTime.homeTeam}</p>
+                                            <p class="secondary-content">${match.score.fullTime.homeTeam === null ? "-" : match.score.fullTime.homeTeam}</p>
                                         </li>
                                         <li class="collection-item">
                                             <span class="title">${match.awayTeam.name}</span>
-                                            <p class="secondary-content">${match.score.fullTime.awayTeam == null ? "-" : match.score.fullTime.awayTeam}</p>
+                                            <p class="secondary-content">${match.score.fullTime.awayTeam === null ? "-" : match.score.fullTime.awayTeam}</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -394,16 +394,16 @@ function getMatch() {
                 <div class="card-match waves-effect hoverable">
                     <a href="./match-detail.html?status=${data.filters.status}&id=${match.id}&matchday=${match.matchday}">
                         <div class="card-content black-text">
-                            <h4>Matchday ${match.matchday} - ${match.competition.name} ${match.status == "FINISHED" ? matchFinish : matchSchedule} </h4>
+                            <h4>Matchday ${match.matchday} - ${match.competition.name} ${match.status === "FINISHED" ? matchFinish : matchSchedule} </h4>
                             <p>${formatted_date}</p>
                             <ul class="collection">
                                 <li class="collection-item">
                                     <span class="title">${match.homeTeam.name}</span>
-                                    <p class="secondary-content">${match.score.fullTime.homeTeam == null ? "-" : match.score.fullTime.homeTeam}</p>
+                                    <p class="secondary-content">${match.score.fullTime.homeTeam === null ? "-" : match.score.fullTime.homeTeam}</p>
                                 </li>
                                 <li class="collection-item">
                                     <span class="title">${match.awayTeam.name}</span>
-                                    <p class="secondary-content">${match.score.fullTime.awayTeam == null ? "-" : match.score.fullTime.awayTeam}</p>
+                                    <p class="secondary-content">${match.score.fullTime.awayTeam === null ? "-" : match.score.fullTime.awayTeam}</p>
                                 </li>
                             </ul>
                         </div>
@@ -454,22 +454,22 @@ function getMatchById() {
                             <ul class="collection">
                                 <li class="collection-item">
                                     <span class="title">${data.matches[indexMatch-1].homeTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
+                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam === null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
                                 </li>
                                 <li class="collection-item">
                                     <span class="title">${data.matches[indexMatch-1].awayTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
+                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam === null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
                                 </li>
                             </ul>
                             <h3>Half Time</h3>
                             <ul class="collection">
                                 <li class="collection-item">
                                     <span class="title">${data.matches[indexMatch-1].homeTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
+                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam === null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
                                 </li>
                                 <li class="collection-item">
                                     <span class="title">${data.matches[indexMatch-1].awayTeam.name}</span>
-                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
+                                    <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam === null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
                                 </li>
                             </ul>
                         </div>
@@ -520,22 +520,22 @@ function getMatchById() {
                     <ul class="collection">
                         <li class="collection-item">
                             <span class="title">${data.matches[indexMatch-1].homeTeam.name}</span>
-                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
+                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam === null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
                         </li>
                         <li class="collection-item">
                             <span class="title">${data.matches[indexMatch-1].awayTeam.name}</span>
-                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
+                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam === null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
                         </li>
                     </ul>
                     <h3>Half Time</h3>
                     <ul class="collection">
                         <li class="collection-item">
                             <span class="title">${data.matches[indexMatch-1].homeTeam.name}</span>
-                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
+                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.homeTeam === null ? "-" : data.matches[indexMatch-1].score.fullTime.homeTeam}</p>
                         </li>
                         <li class="collection-item">
                             <span class="title">${data.matches[indexMatch-1].awayTeam.name}</span>
-                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam == null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
+                            <p class="secondary-content">${data.matches[indexMatch-1].score.fullTime.awayTeam === null ? "-" : data.matches[indexMatch-1].score.fullTime.awayTeam}</p>
                         </li>
                     </ul>
                 </div>
@@ -576,16 +576,16 @@ function getSavedMatch() {
                     <div class="card-match waves-effect hoverable">
                         <a href="./match-detail.html?status=${matches.status}&id=${matches.id}&matchday=${matches.matchday}&saved=true">
                             <div class="card-content black-text">
-                                <h4>Matchday ${matches.matchday} - ${matches.competition.name} ${matches.status == "FINISHED" ? matchFinish : matchSchedule} </h4>
+                                <h4>Matchday ${matches.matchday} - ${matches.competition.name} ${matches.status === "FINISHED" ? matchFinish : matchSchedule} </h4>
                                 <p>${formatted_date}</p>
                                 <ul class="collection">
                                 <li class="collection-item">
                                     <span class="title">${matches.homeTeam.name}</span>
-                                    <p class="secondary-content">${matches.score.fullTime.homeTeam == null ? "-" : matches.score.fullTime.homeTeam}</p>
+                                    <p class="secondary-content">${matches.score.fullTime.homeTeam === null ? "-" : matches.score.fullTime.homeTeam}</p>
                                 </li>
                                 <li class="collection-item">
                                     <span class="title">${matches.awayTeam.name}</span>
-                                    <p class="secondary-content">${matches.score.fullTime.awayTeam == null ? "-" : matches.score.fullTime.awayTeam}</p>
+                                    <p class="secondary-content">${matches.score.fullTime.awayTeam === null ? "-" : matches.score.fullTime.awayTeam}</p>
                                 </li>
                             </ul>
                             </div>
@@ -640,22 +640,22 @@ function getSavedMatchById() {
                     <ul class="collection">
                         <li class="collection-item">
                             <span class="title">${match.homeTeam.name}</span>
-                            <p class="secondary-content">${match.score.fullTime.homeTeam == null ? "-" : match.score.fullTime.homeTeam}</p>
+                            <p class="secondary-content">${match.score.fullTime.homeTeam === null ? "-" : match.score.fullTime.homeTeam}</p>
                         </li>
                         <li class="collection-item">
                             <span class="title">${match.awayTeam.name}</span>
-                            <p class="secondary-content">${match.score.fullTime.awayTeam == null ? "-" : match.score.fullTime.awayTeam}</p>
+                            <p class="secondary-content">${match.score.fullTime.awayTeam === null ? "-" : match.score.fullTime.awayTeam}</p>
                         </li>
                     </ul>
                     <h3>Half Time</h3>
                     <ul class="collection">
                         <li class="collection-item">
                             <span class="title">${match.homeTeam.name}</span>
-                            <p class="secondary-content">${match.score.fullTime.homeTeam == null ? "-" : match.score.fullTime.homeTeam}</p>
+                            <p class="secondary-content">${match.score.fullTime.homeTeam === null ? "-" : match.score.fullTime.homeTeam}</p>
                         </li>
                         <li class="collection-item">
                             <span class="title">${match.awayTeam.name}</span>
-                            <p class="secondary-content">${match.score.fullTime.awayTeam == null ? "-" : match.score.fullTime.awayTeam}</p>
+                            <p class="secondary-content">${match.score.fullTime.awayTeam === null ? "-" : match.score.fullTime.awayTeam}</p>
                         </li>
                     </ul>
                 </div>
