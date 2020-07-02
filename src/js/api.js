@@ -555,7 +555,7 @@ function getSavedMatch() {
     getAll().then(function(matches) {
         // Menyusun komponen card artikel secara dinamis
         let matchSavedHTML = "";
-        if (matches !== null) {
+        if (matches.length !== 0) {
             matches.forEach(function(matches) {
                 let matchFinish = `<i class="tiny material-icons">check</i>`;
                 let matchSchedule = `<i class="tiny material-icons">schedule</i>`;
