@@ -1,4 +1,6 @@
-const version = "0.1.9";
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.3/workbox-sw.js');
+
+const version = "0.2.0";
 const CACHE_NAME = `RealMadrid-${version}`;
 let urlsToCache = [
     "/",
