@@ -11,6 +11,7 @@ workbox.precaching.precacheAndRoute([
     { url: '/match-detail.html', revision: '1' },
     { url: '/nav-menu.html', revision: '1' },
     { url: '/manifest.json', revision: '1' },
+    { url: '/favicon.ico', revision: '1' },
     { url: '/src/css/font.css', revision: '1' },
     { url: '/src/css/main.css', revision: '1' },
     { url: '/src/css/materialize.min.css', revision: '1' },
