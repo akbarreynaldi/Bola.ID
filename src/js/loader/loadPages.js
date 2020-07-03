@@ -4,7 +4,7 @@ import { getMatches, getSavedMatches } from '../handler/matchDataHandler.js';
 
 // Load page content
 function loadPage(path = {}) {
-    const xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4) {
             const content = document.querySelector("#body-content");
