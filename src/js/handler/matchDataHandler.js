@@ -65,7 +65,7 @@ const displayMatches = (data) => {
         matchesDataHTML += `
         <div class="col s12 m6">
         <div class="card-match waves-effect hoverable">
-            <a href="./match-detail.html?id=${match.id}&matchday=${match.matchday === null ? "0" : match.matchday}">
+            <a href="./match-detail.html?id=${match.id}">
                 <div class="card-content black-text">
                     <h4>Matchday ${match.matchday === null ? "" : match.matchday} - ${match.competition.name} ${match.status === "FINISHED" ? matchFinish : matchSchedule} </h4>
                     <p>${formatted_date}</p>

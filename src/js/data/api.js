@@ -37,7 +37,6 @@ class fetchAPI {
     async matchInfo() {
         let urlParams = new URLSearchParams(window.location.search);
         let matchId = urlParams.get("id");
-        console.log(matchId)
         const result = await this.fetch(`matches/${matchId}`);
         return result;
     }

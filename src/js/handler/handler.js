@@ -8,16 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const urlHash = window.location.hash;
     const path = pathHandler(urlHash.substr(1));
 
-    console.log(nav);
-    console.log(urlHash);
-    console.log(path);
-
     M.Sidenav.init(nav);
     loadNav();
 
     if (path.target === '') path.target = 'home';
     loadPage(path);
-
-    console.log(path);
-    console.log(path.target);
 });

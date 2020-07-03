@@ -52,8 +52,6 @@ const getById = (id) => {
             .then((db) => {
                 let tx = db.transaction("match", "readonly");
                 let store = tx.objectStore("match");
-                console.log(id);
-                console.log(Number(id));
                 return store.get(Number(id));
 
             })
