@@ -36,8 +36,8 @@ workbox.precaching.precacheAndRoute([
     { url: '/src/js/library/materialize.min.js', revision: '1' },
     { url: '/src/js/loader/loadNav.js', revision: '1' },
     { url: '/src/js/loader/loadPages.js', revision: '1' },
-
 ]);
+
 workbox.routing.registerRoute(
     /\.(?:png|gif|jpg|jpeg|svg)$/,
     workbox.strategies.cacheFirst({
