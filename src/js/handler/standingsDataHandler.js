@@ -10,21 +10,21 @@ const getStandings = () => {
     cache.standingsData()
         .then(data => {
             if (data !== undefined) {
-                displayStandings(data.table[0]);
+                displayStandings(data.standings[0]);
             }
         });
     api.standingsData()
         .then(data => {
-            displayStandings(data.table[0]);
+            displayStandings(data.standings[0]);
         });
 }
 
 //display team info
 const displayStandings = (data) => {
     let standingsHTML = "";
-    data.forEach(function(standing) {
-        url = standing.team.crestUrl;
-        newUrl = url.replace(/^http:\/\//i, 'https://');
+    data.table.forEach(function(standing) {
+        let url = standing.team.crestUrl;
+        let newUrl = url.replace(/^http:\/\//i, 'https://');
         standingsHTML += `
         <tr>
             <td>${standing.position}</td>
