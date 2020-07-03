@@ -1,4 +1,11 @@
 const base_url = "https://api.football-data.org/v2/";
+const fetchApi = url => {
+    return fetch(url, {
+        headers: {
+            'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
+        }
+    });
+};
 
 // Blok kode yang akan di panggil jika fetch berhasil
 function status(response) {
@@ -53,11 +60,7 @@ function getSquad() {
         });
     }
 
-    fetch(base_url + "teams/86", {
-            headers: {
-                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
-            }
-        })
+    fetchApi(base_url + "teams/86")
         .then(status)
         .then(json)
         .then(function(data) {
@@ -133,11 +136,7 @@ function getTeamInfo() {
         });
     }
 
-    fetch(base_url + "teams/86", {
-            headers: {
-                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
-            }
-        })
+    fetch(base_url + "teams/86")
         .then(status)
         .then(json)
         .then(function(data) {
@@ -207,11 +206,7 @@ function getActiveCompetition() {
         });
     }
 
-    fetch(base_url + "teams/86", {
-            headers: {
-                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
-            }
-        })
+    fetch(base_url + "teams/86")
         .then(status)
         .then(json)
         .then(function(data) {
@@ -269,11 +264,7 @@ function getStandings() {
         });
     }
 
-    fetch(base_url + "competitions/2014/standings", {
-            headers: {
-                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
-            }
-        })
+    fetch(base_url + "competitions/2014/standings")
         .then(status)
         .then(json)
         .then(function(data) {
@@ -362,11 +353,7 @@ function getMatch() {
         });
     }
 
-    fetch(base_url + "teams/86/matches", {
-            headers: {
-                'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
-            }
-        })
+    fetch(base_url + "teams/86/matches")
         .then(status)
         .then(json)
         .then(function(data) {
@@ -486,11 +473,7 @@ function getMatchById() {
             });
         }
 
-        fetch(base_url + "teams/86/matches", {
-                headers: {
-                    'X-Auth-Token': "24fff3ee49fc454b919338b1638865e7"
-                }
-            })
+        fetch(base_url + "teams/86/matches")
             .then(status)
             .then(json)
             .then(function(data) {
