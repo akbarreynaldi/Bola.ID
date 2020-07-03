@@ -53,7 +53,7 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
     new RegExp('match-detail.html?'),
-    workbox.strategies.staleWhileRevalidate({
+    workbox.strategies.cacheFirst({
         cacheName: 'match-detail'
     })
 );

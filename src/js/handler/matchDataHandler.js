@@ -10,14 +10,11 @@ const cache = new cacheAPI();
 const getMatches = () => {
     cache.matchData()
         .then(data => {
-            if (data !== undefined) {
-                displayMatches(data.matches);
-            }
+            if (data !== undefined) displayMatches(data.matches);
+
         });
     api.matchData()
-        .then(data => {
-            displayMatches(data.matches);
-        });
+        .then(data => displayMatches(data.matches));
 }
 
 const getMatchById = (id) => {
@@ -93,6 +90,7 @@ const displayMatches = (data) => {
 }
 
 const detailMatch = (data) => {
+    console.log(data);
     let json = `\"${data.match.utcDate}\"`;
     let dateStr = JSON.parse(json);
     let date = new Date(dateStr);

@@ -67,6 +67,13 @@ header h2 {
     margin-bottom: 0;
 }
 
+.section-match-stats p#not-connected {
+    font-size: 18px;
+    font-weight: 500;
+    color: #071c4d;
+    margin-top: 250px;
+}
+
 .section-match-stats .card-content p.secondary-content {
     margin: 0;
     color: #071C4D;
