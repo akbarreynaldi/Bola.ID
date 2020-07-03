@@ -214,7 +214,7 @@ header h2 {
 }
 
 @media only screen and (min-width: 993px) {
-    #team-info table.responsive-table {
+    #team-info-table table.responsive-table {
         width: 100%;
         border-collapse: collapse;
         border-spacing: 0;
@@ -222,57 +222,57 @@ header h2 {
         position: relative;
         /* sort out borders */
     }
-    #team-info table.responsive-table td:empty:before {
+    #team-info-table table.responsive-table td:empty:before {
         content: '\00a0';
     }
-    #team-info table.responsive-table th,
-    #team-info table.responsive-table td {
+    #team-info-table table.responsive-table th,
+    #team-info-table table.responsive-table td {
         margin: 0;
         vertical-align: top;
         border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
-    #team-info table.responsive-table th {
+    #team-info-table table.responsive-table th {
         text-align: left;
     }
-    #team-info table.responsive-table thead {
+    #team-info-table table.responsive-table thead {
         display: block;
         float: left;
         width: 50%;
     }
-    #team-info table.responsive-table thead tr {
+    #team-info-table table.responsive-table thead tr {
         display: block;
         padding: 0;
     }
-    #team-info table.responsive-table thead tr th::before {
+    #team-info-table table.responsive-table thead tr th::before {
         content: "\00a0";
     }
-    #team-info table.responsive-table tbody {
+    #team-info-table table.responsive-table tbody {
         display: block;
         width: auto;
         position: relative;
         overflow-x: auto;
         white-space: nowrap;
     }
-    #team-info table.responsive-table tbody tr {
+    #team-info-table table.responsive-table tbody tr {
         display: inline-block;
         vertical-align: top;
         padding: 0;
     }
-    #team-info table.responsive-table th {
+    #team-info-table table.responsive-table th {
         display: block;
         text-align: left;
     }
-    #team-info table.responsive-table td {
+    #team-info-table table.responsive-table td {
         display: block;
         min-height: 1.25em;
         text-align: right;
     }
-    #team-info table.responsive-table tr {
+    #team-info-table table.responsive-table tr {
         border-bottom: none;
         padding: 0 10px;
     }
-    #team-info table.responsive-table thead,
-    #team-info table.responsive-table tbody {
+    #team-info-table table.responsive-table thead,
+    #team-info-table table.responsive-table tbody {
         border: 0;
     }
 }
