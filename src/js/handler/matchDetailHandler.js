@@ -1,6 +1,7 @@
 import { getMatchById, getSavedMatchById } from '../handler/matchDataHandler.js';
 
 let urlParams = new URLSearchParams(window.location.search);
+let idParam = urlParams.get("id");
 let isFromSaved = urlParams.get("saved");
 //mengambil id elemen untuk mengatur penampilan button
 let btnBackMatch = document.getElementById("backToMatch");
@@ -49,5 +50,5 @@ xhttp.onreadystatechange = function() {
         }
     }
 };
-xhttp.open("GET", "match-detail.html", true);
+xhttp.open("GET", "match-detail.html?" + idParam, true);
 xhttp.send();
